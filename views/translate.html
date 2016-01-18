@@ -7,16 +7,16 @@
 <body ng-controller="MainPageCtrl" class="chrome chrome47 treb map-enabled">
 
 
-	<h3>{{title}}</h3>
-	<p>
+	<h3>Translation Demo</h3>
+	<!-- <p>
 		<input type="text" style="width:400px" ng-model="link">
 		<button ng-click="sendLink()">Search</button>
 	</p>
-
+ -->
 
 	<form action='/content'  method="POST"  target='_blank'>
-	   <input name="link" type="text" />
-	    <input type="submit", value="submit" />
+	   <input name="link" type="text" style="width: 400px" />
+	    <input type="submit", value="submit"  />
 	 </form>
 
 
