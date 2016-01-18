@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="mainApp">
+<head>
+	<title>test</title>
+
+</head>
+<body ng-controller="MainPageCtrl" class="chrome chrome47 treb map-enabled">
+
+
+	<h3>{{title}}</h3>
+	<p>
+		<input type="text" style="width:400px" ng-model="link">
+		<button ng-click="sendLink()">Search</button>
+	</p>
+
+
+	<form action='/content'  method="POST"  target='_blank'>
+	   <input name="link" type="text" />
+	    <input type="submit", value="submit" />
+	 </form>
+
+
+	 <div  ng-bind-html="result"></div>
+</body>
+
+
+<script src="/js/ng/angular.min.js"></script>
+
+<script src="/js/mainApp.js"></script>
+</html>
+
+
