@@ -4,7 +4,7 @@ var http = require('http');
 var cheerio = require('cheerio');
 var async = require('async');
 var cheerio = require('cheerio');
-
+ var mongoose = require('mongoose');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
@@ -12,9 +12,41 @@ router.get('/', function(req, res, next) {
 
 
 
+// --------------------------------
+// language section
+// --------------------------------
+ var TranslationFeild = require('../models/translation.feild');
+
+router.get('/translate', function(req, res, next) {
+
+	var newFeild = new TranslationFeild({
+		title: 'andy'
+	});
+
+	console.log(newFeild);
+	newFeild.save(function(err ,result){
+
+		if(err)
+			console.log(err);
+		res.end('33');
+	});
+
+	//res.end('3sss3');
+	
+});
+
+
+
+
+
+
+
+
+
+
+
 router.post('/content', function(req, res, next) {
 
-	console.log(req.body.link);
 
 	getHtmlContent(req.body.link, function(html) {
 		
@@ -37,7 +69,13 @@ router.post('/content', function(req, res, next) {
 				// find 
 				async.eachSeries(dataList, function(item, callback) {
 					//console.log(item.attribs);
-					LinkList.push(item.attribs['data-deferred-loaded']);
+
+					if(typeof item.attribs['data-deferred-loaded'] === 'undefined' )
+						LinkList.push(item.attribs['data-deferred-load']);
+					else
+						LinkList.push(item.attribs['data-deferred-loaded']);
+
+
 					callback();
 				}, function(err){
 					//console.log(LinkList);
@@ -75,7 +113,6 @@ router.post('/content', function(req, res, next) {
 
 			//res.end(returnHtml);
 
-			console.log('done');
 			res.render('result', { 
 				title: 'tanslate result' ,
 				htmlContent: returnHtml
@@ -93,6 +130,7 @@ router.post('/content', function(req, res, next) {
 	});
 
 });
+
 
 
 
