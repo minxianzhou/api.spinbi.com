@@ -23,7 +23,7 @@ router.get('/translate', function(req, res, next) {
 		title: 'andy'
 	});
 
-	console.log(newFeild);
+
 	newFeild.save(function(err ,result){
 
 		if(err)
@@ -36,6 +36,28 @@ router.get('/translate', function(req, res, next) {
 });
 
 
+router.post('/translate', function(req, res, next) {
+	
+	var newFeild = new TranslationFeild(req.body);
+	newFeild.length = newFeild.pattern.length;
+
+	newFeild.save(function(err ,result){
+		
+		if(err)
+			console.log(err);
+
+		res.end('33');
+	});
+
+});
+
+
+var isTranslateFeildExist = function(translateText){
+
+
+
+	return false;
+}
 
 
 
@@ -45,6 +67,10 @@ router.get('/translate', function(req, res, next) {
 
 
 
+
+
+
+// process tanslation 
 router.post('/content', function(req, res, next) {
 
 

@@ -2,8 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var TranslationFeildSchema = new mongoose.Schema({
-	title : {type : String},
-	
+	language : {type: String},
+	pattern : {type : String},
+	text : { type : String},
+	length : {type: Number}
 });
 
 var TranslationFeild = mongoose.model('Translation_Feild', TranslationFeildSchema);
