@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var TranslationFeildSchema = new mongoose.Schema({
-	language : {type: String},
-	pattern : {type : String},
-	text : { type : String},
+	language : {type: String, required: true},
+	pattern : {type : String, required: true},
+	text : { type : String, required: true},
 	length : {type: Number}
 });
 

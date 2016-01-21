@@ -5,6 +5,10 @@ var cheerio = require('cheerio');
 var async = require('async');
 var cheerio = require('cheerio');
  var mongoose = require('mongoose');
+
+ var global = require('../lib/global');
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
@@ -19,20 +23,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/translate', function(req, res, next) {
 
-	var newFeild = new TranslationFeild({
-		title: 'andy'
-	});
 
+	var returnObject = global.newReturnObject();
+	res.json(returnObject);
 
-	newFeild.save(function(err ,result){
-
-		if(err)
-			console.log(err);
-		res.end('33');
-	});
-
-	//res.end('3sss3');
-	
 });
 
 
@@ -41,12 +35,16 @@ router.post('/translate', function(req, res, next) {
 	var newFeild = new TranslationFeild(req.body);
 	newFeild.length = newFeild.pattern.length;
 
+	var returnObject = global.newReturnObject();
 	newFeild.save(function(err ,result){
 		
-		if(err)
+		if(err){
 			console.log(err);
+			res.status(500).send(err);
 
-		res.end('33');
+		}else{
+			res.send(result);
+		}
 	});
 
 });
