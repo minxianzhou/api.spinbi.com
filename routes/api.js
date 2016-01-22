@@ -23,9 +23,16 @@ router.get('/', function(req, res, next) {
 
 router.get('/translate', function(req, res, next) {
 
+	TranslationFeild.find({}).exec(function(err,results){
+		if(err){
+			console.log(err);
+			res.status(500).send(err);
 
-	var returnObject = global.newReturnObject();
-	res.json(returnObject);
+		}else{
+			res.send(results);
+		}
+	});
+
 
 });
 
