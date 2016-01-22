@@ -56,6 +56,23 @@ router.post('/translate', function(req, res, next) {
 
 });
 
+router.delete('/translate', function(req, res, next) {
+	//console.log(req);
+	TranslationFeild.find({ _id: req.query._id }).remove().exec(function(result){
+		res.send(result);
+	});
+
+	
+});
+
+router.put('/translate', function(req, res, next) {
+	
+	console.log(req);
+	
+	res.send('ok');
+	
+});
+
 
 var isTranslateFeildExist = function(translateText){
 
