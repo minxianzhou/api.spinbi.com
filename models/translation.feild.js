@@ -6,7 +6,8 @@ var TranslationFeildSchema = new mongoose.Schema({
 	pattern : {type : String, required: true},
 	text : { type : String, required: true},
 	length : {type: Number},
-	date : { type: Date}
+	date : { type: Date},
+	type : { type: String , default : 'system'}
 });
 
 var TranslationFeild = mongoose.model('Translation_Feild', TranslationFeildSchema);

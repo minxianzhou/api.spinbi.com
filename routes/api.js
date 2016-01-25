@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var async = require('async');
 var cheerio = require('cheerio');
  var mongoose = require('mongoose');
-
+ var TranslationFeild = require('../models/translation.feild');
  var global = require('../lib/global');
 
 
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 // --------------------------------
 // language section
 // --------------------------------
- var TranslationFeild = require('../models/translation.feild');
+
 
 router.get('/translate', function(req, res, next) {
 
@@ -58,6 +58,9 @@ router.post('/translate', function(req, res, next) {
 
 router.delete('/translate', function(req, res, next) {
 	//console.log(req);
+
+	
+
 	TranslationFeild.find({ _id: req.query._id }).remove().exec(function(result){
 		res.send(result);
 	});
@@ -66,17 +69,14 @@ router.delete('/translate', function(req, res, next) {
 });
 
 router.put('/translate', function(req, res, next) {
-	
-	console.log(req);
-	
-	res.send('ok');
-	
+	req.body.length = req.body.pattern.length;
+	TranslationFeild.findOneAndUpdate({_id:req.body._id}, req.body, function (err, result) {
+	  	res.send(result);
+	});
 });
 
 
 var isTranslateFeildExist = function(translateText){
-
-
 
 	return false;
 }
@@ -104,8 +104,13 @@ router.post('/content', function(req, res, next) {
 
 		var LinkList  = [];
 		var returnHtml = '';
+		var TranslateList = [];
 
 
+		String.prototype.replaceAll = function (find, replace) {
+		    var str = this;
+		    return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+		};
 
 
 		async.series([
@@ -116,17 +121,20 @@ router.post('/content', function(req, res, next) {
 				var dataList = $('.link-item');
 				// find 
 				async.eachSeries(dataList, function(item, callback) {
-					//console.log(item.attribs);
-
 					if(typeof item.attribs['data-deferred-loaded'] === 'undefined' )
 						LinkList.push(item.attribs['data-deferred-load']);
 					else
 						LinkList.push(item.attribs['data-deferred-loaded']);
-
-
 					callback();
 				}, function(err){
 					//console.log(LinkList);
+					next();
+				});
+		    },
+		    // get translation lib from db
+		    function(next){
+				TranslationFeild.find({}).sort('-length').exec(function(err,results){
+					TranslateList = results;
 					next();
 				});
 		    },
@@ -135,25 +143,23 @@ router.post('/content', function(req, res, next) {
 		        
 		        async.eachSeries(LinkList, function(link, callback) {
 					getHtmlContent(link, function(content){
-
 						returnHtml += '<div class="link-item status-pc hasheader loaded">' + content + '</div>';
 						callback();
 					});
 				}, function(err){
-					//console.log(LinkList);
 					next();
 				});
 
 		    },
 		    // do the translation here.
 		    function(next){
-
-
-		    	returnHtml = translate(returnHtml);
-
-
-		    	next();
-
+		    	//returnHtml = translate(returnHtml);
+				async.eachSeries(TranslateList, function(item, callback) {
+					returnHtml = returnHtml.replaceAll(item.pattern, item.text);
+					callback();
+				}, function done(){
+					next();
+				});
 		    }
 		],
 		// optional callback
@@ -168,13 +174,6 @@ router.post('/content', function(req, res, next) {
 		    
 		});
 
-
-
-
-
-
-
-
 	});
 
 });
@@ -182,50 +181,7 @@ router.post('/content', function(req, res, next) {
 
 
 
-var TranslateList = [
-	{ SearchText:'Kitchens' , ReplaceText: '厨房' },
-	{ SearchText:'Kitchens' , ReplaceText: '厨房' },
-	{ SearchText:'Exterior' , ReplaceText: '内饰' },
-	{ SearchText:'Hardwood Floor' , ReplaceText: '实木地板' },
-	{ SearchText:'Basement' , ReplaceText: '地库' },
-	{ SearchText:'Heat' , ReplaceText: '暖气' },
-	{ SearchText:'Apx Age' , ReplaceText: '房龄' },
-	{ SearchText:'Apx Sqft' , ReplaceText: '房屋面积' },
-	
-	{ SearchText:'Central Air' , ReplaceText: '中央空调' },
-	{ SearchText:'A/C' , ReplaceText: '空调' },
-	{ SearchText:'Central Vac' , ReplaceText: '中央吸尘' },
-	{ SearchText:'Fireplace/Stv' , ReplaceText: '火炉' },
-	{ SearchText:'Living' , ReplaceText: '主厅' },
-	{ SearchText:'Dining' , ReplaceText: '饭厅' },
-	{ SearchText:'Family' , ReplaceText: '家庭厅' },
-	{ SearchText:'Breakfast' , ReplaceText: '早餐厅' },
-	{ SearchText:'Master' , ReplaceText: '主人房间' },
-	{ SearchText:'2nd Br' , ReplaceText: '第二房间' },
-	{ SearchText:'3rd Br' , ReplaceText: '第三房间' },
-	{ SearchText:'4th Br' , ReplaceText: '第四房间' },
-	{ SearchText:'List' , ReplaceText: '标价' },
-	{ SearchText:'Taxes' , ReplaceText: '地税' },
 
-
-];
-
-
-
-var translate = function(orgContent){
-
-	var data = orgContent;
-
-	async.each(TranslateList, function(item, callback) {
-		var re = new RegExp(item.SearchText, 'g');
-		data = data.replace(re, item.ReplaceText);		
-		callback();
-	}, function(err){
-
-	});
-
-	return data;
-}
 
 
 var getHtmlContent = function( url, callBack){
