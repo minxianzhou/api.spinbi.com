@@ -17,6 +17,16 @@ router.get('/', function(req, res, next) {
 
 
 // --------------------------------
+// constrat value
+// --------------------------------
+router.get('/constant/:key', function(req, res, next) {
+	
+	console.log(res.params);
+	res.send('dd');
+});
+
+
+// --------------------------------
 // language section
 // --------------------------------
 
