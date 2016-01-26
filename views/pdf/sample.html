@@ -2,69 +2,80 @@
 <html>
 <head>
 	<title>pdf sample</title>
-	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> -->
-	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	
 	<style type="text/css">
 
 		@font-face {
 			font-family: 'ArialMT';
-			src: url('ArialMT.eot');
-			src: url('ArialMT.eot?#iefix') format('embedded-opentype'),
-				url('ArialMT.woff2') format('woff2'),
-				url('ArialMT.woff') format('woff'),
-				url('ArialMT.ttf') format('truetype'),
-				url('ArialMT.svg#ArialMT') format('svg');
-			font-weight: 100;
+			src: url('/font/ArialMT.eot');
+			src: url('/font/ArialMT.eot?#iefix') format('embedded-opentype'),
+				url('/font/ArialMT.woff2') format('woff2'),
+				url('/font/ArialMT.woff') format('woff'),
+				url('/font/ArialMT.ttf') format('truetype'),
+				url('/font/ArialMT.svg#ArialMT') format('svg');
+			font-weight: 300;
 			font-style: normal;
 		}
 
 		@font-face {
 			font-family: 'Futura';
-			src: url('FuturaBT-Bold.eot');
-			src: url('FuturaBT-Bold.eot?#iefix') format('embedded-opentype'),
-				url('FuturaBT-Bold.woff2') format('woff2'),
-				url('FuturaBT-Bold.woff') format('woff'),
-				url('FuturaBT-Bold.ttf') format('truetype'),
-				url('FuturaBT-Bold.svg#FuturaBT-Bold') format('svg');
+			src: url('/font/FuturaBT-Bold.eot');
+			src: url('/font/FuturaBT-Bold.eot?#iefix') format('embedded-opentype'),
+				url('/font/FuturaBT-Bold.woff2') format('woff2'),
+				url('/font/FuturaBT-Bold.woff') format('woff'),
+				url('/font/FuturaBT-Bold.ttf') format('truetype'),
+				url('/font/FuturaBT-Bold.svg#FuturaBT-Bold') format('svg');
 			font-weight: bold;
 			font-style: normal;
 		}
 
 		@font-face {
 			font-family: 'ArialMT';
-			src: url('Arial-ItalicMT.eot');
-			src: url('Arial-ItalicMT.eot?#iefix') format('embedded-opentype'),
-				url('Arial-ItalicMT.woff2') format('woff2'),
-				url('Arial-ItalicMT.woff') format('woff'),
-				url('Arial-ItalicMT.ttf') format('truetype'),
-				url('Arial-ItalicMT.svg#Arial-ItalicMT') format('svg');
+			src: url('/font/Arial-ItalicMT.eot');
+			src: url('/font/Arial-ItalicMT.eot?#iefix') format('embedded-opentype'),
+				url('/font/Arial-ItalicMT.woff2') format('woff2'),
+				url('/font/Arial-ItalicMT.woff') format('woff'),
+				url('/font/Arial-ItalicMT.ttf') format('truetype'),
+				url('/font/Arial-ItalicMT.svg#Arial-ItalicMT') format('svg');
 			font-weight: normal;
 			font-style: italic;
 		}
 
 		@font-face {
 			font-family: 'Futura';
-			src: url('FuturaStd-Book.eot');
-			src: url('FuturaStd-Book.eot?#iefix') format('embedded-opentype'),
-				url('FuturaStd-Book.woff2') format('woff2'),
-				url('FuturaStd-Book.woff') format('woff'),
-				url('FuturaStd-Book.ttf') format('truetype'),
-				url('FuturaStd-Book.svg#FuturaStd-Book') format('svg');
+			src: url('/font/FuturaStd-Book.eot');
+			src: url('/font/FuturaStd-Book.eot?#iefix') format('embedded-opentype'),
+				url('/font/FuturaStd-Book.woff2') format('woff2'),
+				url('/font/FuturaStd-Book.woff') format('woff'),
+				url('/font/FuturaStd-Book.ttf') format('truetype'),
+				url('/font/FuturaStd-Book.svg#FuturaStd-Book') format('svg');
 			font-weight: normal;
 			font-style: normal;
 		}
 
-		body{
-			/*border: 1px solid #eee;*/
-			font-family: 'Futura', sans-serif;
+		@font-face {
+			font-family: 'Futura';
+			src: url('/font/FuturaStd-Light.eot');
+			src: url('/font/FuturaStd-Light.eot?#iefix') format('embedded-opentype'),
+				url('/font/FuturaStd-Light.woff2') format('woff2'),
+				url('/font/FuturaStd-Light.woff') format('woff'),
+				url('/font/FuturaStd-Light.ttf') format('truetype'),
+				url('/font/FuturaStd-Light.svg#FuturaStd-Light') format('svg');
+			font-weight: 100;
+			font-style: normal;
 		}
 
+
+		.top-margin{
+			margin-top: 20px;
+		}
 
 		header{
 			position: relative;
 			/*background-color: gray;*/
 			height: 83px;
-			border-bottom: 3px solid #000
+			border-bottom: 3px solid #000;
+		
 		}
 
 		header .logo{
@@ -82,7 +93,7 @@
 		header .tbs-logo{
 			position: absolute;
 		    top: 0px;
-		    right: 0px;
+		    right: -15px;
 		    display: inline-block;
 		    background-repeat: no-repeat;
 		    background-size: 150px auto;
@@ -94,27 +105,55 @@
 		header .form-number{
 			/*background-color: gray;*/
 			position: absolute;
-			bottom: 3px;
+			bottom: 0px;
 		}
 		header .form-number .number{
 			font-size: 16px;
 			font-weight: bold;
 		}
 		header .form-number .desc{
-			font-size: 9px;
+			font-size: 8px;
+			line-height: 23px;
 		}
 
 		header .form-heading{
 			/*background-color: gray;*/
 			position: absolute;
-			font-size: 24px;
-			font-weight: bold;
+		
 			/*background-color: red!important;*/
-			top: 12px;
-			left: 180px;
+			top: 10px;
+			left: 175px;
 			width: 400px;
 		}
 
+		h1, h2 , h3 { color: black; }
+		h1{
+			font-weight: bold;		
+			font-size: 21px;
+			line-height: 3px;
+		}
+
+		h2{
+			font-weight: bold;		
+			font-size: 16px;
+			line-height: 3px;
+		}
+
+		h3{
+			font-weight: bold;		
+			font-size: 14px;
+			line-height: 3px;
+		}
+		body{
+			/*border: 1px solid #eee;*/
+			font-family: 'Futura';
+			font-weight: 100;
+			font-size: 11px;
+			letter-spacing: 0px;
+			line-height: 3px;
+		
+
+		}
 
 		.page-content{
 
@@ -123,7 +162,7 @@
 		}
 
 		.page-content .row{
-
+			position: relative;
 		}
 
 		.page-content .row .heading{
@@ -147,13 +186,17 @@
 		</div>
 
 		<div class="form-heading">
-			Offer Summary Document
+			<h1>Offer Summary Document</h1>
+			<h2 class="top-margin">For use with Agreement of Purchase and Sale</h2>
 		</div>
 	</header>
 
 	<div class="page-content" >
 		<div class="row">
-			For Brokerage submitting the offer on behalf of the Buyer:
+		 	<h3>For Brokerage submitting the offer on behalf of the Buyer:</h3>	
+		</div>
+		<div class="row">
+			When sent to the Listing Brokerage this form can be used as evidence that you have a written signed offer from a Buyer to the Seller.
 		</div>
 
 	</div>
