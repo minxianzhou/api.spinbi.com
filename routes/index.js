@@ -30,9 +30,9 @@ router.get('/pdf', function(req, res, next) {
 		format: 'Letter',
 		"orientation": "portrait",
 		"border": {
-		    "top": "8mm",            // default is 0, units: mm, cm, in, px 
+		    "top": "7mm",            // default is 0, units: mm, cm, in, px 
 		    "right": "10mm",
-		    "bottom": "8mm",
+		    "bottom": "7mm",
 		    "left": "10mm"
 		},
 	};

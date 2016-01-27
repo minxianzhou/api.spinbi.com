@@ -7,41 +7,30 @@
 
 		@font-face {
 			font-family: 'ArialMT';
-			src: url('/font/ArialMT.eot');
-			src: url('/font/ArialMT.eot?#iefix') format('embedded-opentype'),
-				url('/font/ArialMT.woff2') format('woff2'),
-				url('/font/ArialMT.woff') format('woff'),
-				url('/font/ArialMT.ttf') format('truetype'),
-				url('/font/ArialMT.svg#ArialMT') format('svg');
+			src: url('./font/ArialMT.eot');
+			src: url('./font/ArialMT.eot?#iefix') format('embedded-opentype'),
+				url('./font/ArialMT.woff2') format('woff2'),
+				url('./font/ArialMT.woff') format('woff'),
+				url('./font/ArialMT.ttf') format('truetype'),
+				url('./font/ArialMT.svg#ArialMT') format('svg');
 			font-weight: 300;
 			font-style: normal;
 		}
 
-		@font-face {
-			font-family: 'Futura';
-			src: url('/font/FuturaBT-Bold.eot');
-			src: url('/font/FuturaBT-Bold.eot?#iefix') format('embedded-opentype'),
-				url('/font/FuturaBT-Bold.woff2') format('woff2'),
-				url('/font/FuturaBT-Bold.woff') format('woff'),
-				url('/font/FuturaBT-Bold.ttf') format('truetype'),
-				url('/font/FuturaBT-Bold.svg#FuturaBT-Bold') format('svg');
-			font-weight: bold;
-			font-style: normal;
-		}
 
 		@font-face {
 			font-family: 'ArialMT';
-			src: url('/font/Arial-ItalicMT.eot');
-			src: url('/font/Arial-ItalicMT.eot?#iefix') format('embedded-opentype'),
-				url('/font/Arial-ItalicMT.woff2') format('woff2'),
-				url('/font/Arial-ItalicMT.woff') format('woff'),
-				url('/font/Arial-ItalicMT.ttf') format('truetype'),
-				url('/font/Arial-ItalicMT.svg#Arial-ItalicMT') format('svg');
+			src: url('./font/Arial-ItalicMT.eot');
+			src: url('./font/Arial-ItalicMT.eot?#iefix') format('embedded-opentype'),
+				url('./font/Arial-ItalicMT.woff2') format('woff2'),
+				url('./font/Arial-ItalicMT.woff') format('woff'),
+				url('./font/Arial-ItalicMT.ttf') format('truetype'),
+				url('./font/Arial-ItalicMT.svg#Arial-ItalicMT') format('svg');
 			font-weight: normal;
 			font-style: italic;
 		}
 
-		@font-face {
+/*		@font-face {
 			font-family: 'Futura';
 			src: url('./font/FuturaStd-Book.eot');
 			src: url('./font/FuturaStd-Book.eot?#iefix') format('embedded-opentype'),
@@ -49,21 +38,35 @@
 				url('./font/FuturaStd-Book.woff') format('woff'),
 				url('./font/FuturaStd-Book.ttf') format('truetype'),
 				url('./font/FuturaStd-Book.svg#FuturaStd-Book') format('svg');
-			font-weight: normal;
+			font-weight: 300;
+			font-style: normal;
+		}
+*/
+
+		@font-face {
+			font-family: 'Futura';
+			src: url('./font/FuturaBT-Bold.eot');
+			src: url('./font/FuturaBT-Bold.eot?#iefix') format('embedded-opentype'),
+				url('./font/FuturaBT-Bold.woff2') format('woff2'),
+				url('./font/FuturaBT-Bold.woff') format('woff'),
+				url('./font/FuturaBT-Bold.ttf') format('truetype'),
+				url('./font/FuturaBT-Bold.svg#FuturaBT-Bold') format('svg');
+			font-weight: bold;
 			font-style: normal;
 		}
 
-		/*@font-face {
-			font-family: 'Futura';
-			src: url('/font/FuturaStd-Light.eot');
-			src: url('/font/FuturaStd-Light.eot?#iefix') format('embedded-opentype'),
-				url('/font/FuturaStd-Light.woff2') format('woff2'),
-				url('/font/FuturaStd-Light.woff') format('woff'),
-				url('/font/FuturaStd-Light.ttf') format('truetype'),
-				url('/font/FuturaStd-Light.svg#FuturaStd-Light') format('svg');
-			font-weight: 100;
-			font-style: normal;
-		}*/
+		@font-face {
+		    font-family: 'Futura';
+		    src: url('./font/futura-light-webfont.eot');
+		    src: url('./font/futura-light-webfont.eot?#iefix') format('embedded-opentype'),
+		         url('./font/futura-light-webfont.woff2') format('woff2'),
+		         url('./font/futura-light-webfont.woff') format('woff'),
+		         url('./font/futura-light-webfont.ttf') format('truetype'),
+		         url('./font/futura-light-webfont.svg#futura_lightregular') format('svg');
+		    font-weight: normal;
+		    font-style: normal;
+
+		}
 
 
 		.top-margin{
@@ -143,6 +146,7 @@
 			font-weight: bold;		
 			font-size: 14px;
 			line-height: 3px;
+			    margin: 10px 0;
 		}
 
 
@@ -151,8 +155,8 @@
 		body{
 			/*border: 1px solid #eee;*/
 			font-family: 'Futura';
-			font-weight: 300;
-			font-size: 11px;
+			font-weight: 100;
+			font-size: 10px;
 			letter-spacing: 0px;
 			line-height: 3px;
 		
@@ -163,18 +167,43 @@
 
 			/*border: 1px solid gray;*/
 			height: 800px;
+			/*color: rgba(0, 0, 0, 0.75);*/
 		}
 
 		.page-content .row{
 			position: relative;
+			height: 15px;
+		}
+		.page-content .row.med{
+			height: 30px;	
+		}
+		.page-content .row.high{
+			height: 35px;	
 		}
 
-		.page-content .row .heading{
-			font-size: 16px;
+		.page-content .row .cap{
 			font-weight: bold;
-			background-color: red!important;
+			
 		}
 
+		.page-content .row .blank{
+			position: relative;
+			display: inline-block;
+			height: 20px;
+			border-bottom: 1px dotted black;
+			margin-right: -2px;
+			
+			/*background-color: gray;*/
+		}
+
+		.page-content .row .blank .udesc{
+			position: absolute;
+			bottom: -8px;
+			left: 30%;
+			font-size: 8px;
+
+		}
+		
 
 	</style>
 </head>
@@ -202,6 +231,25 @@
 		<div class="row">
 			When sent to the Listing Brokerage this form can be used as evidence that you have a written signed offer from a Buyer to the Seller.
 		</div>
+
+		<div class="row high">
+		   <span class="cap">REAL PROPERTY ADDRESS: </span>	
+		   <div class="blank" style="width:450px">
+		   		<div class="udesc">(municipal address and/or legal description)</div>
+		   </div>
+		   (the “property”) 
+		</div>
+
+		<div class="row med">
+		   <span class="cap">for an Agreement of Purchase and Sale dated: </span>	
+		   <div class="blank" style="width:50px"></div>
+		   day of
+		   <div class="blank" style="width:222px"></div>
+		   , 20
+		   <div class="blank" style="width:40px"></div>
+		   (“offer”)
+		</div>
+
 
 	</div>
 
