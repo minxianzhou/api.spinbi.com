@@ -4,14 +4,16 @@ var Schema = mongoose.Schema;
 var UserSchema = new mongoose.Schema({
 	firstName : {type: String, required: true},
 	lastName : {type : String, required: true},
-	company : {type : String, default: ''},
 	email : {type : String, required: true},
+	password : {type : String, required: true},
+	status : {type : String, required: true, default: 'Pending'},
+	company : {type : String, default: ''},
 	phone : {type : String, default: '' },
-	address : {type : String, required: true},
-	province : {type : String, required: true},
-	country : {type : String, default: 'Canada', required: true},
-	type : { type : String, required: true},
-	date : { type: Date}
+	// address : {type : String},
+	// province : {type : String},
+	// country : {type : String, default: 'Canada', required: true},
+	type : { type : String, required: true, default: 'Normal'},
+	date : { type: Date, required: true}
 });
 
 var User = mongoose.model('User', UserSchema);

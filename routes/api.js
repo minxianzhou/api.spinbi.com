@@ -4,10 +4,10 @@ var http = require('http');
 var cheerio = require('cheerio');
 var async = require('async');
 var cheerio = require('cheerio');
- var mongoose = require('mongoose');
- var TranslationFeild = require('../models/translation.feild');
- var global = require('../lib/global');
-
+var mongoose = require('mongoose');
+var global = require('../lib/global');
+var TranslationFeild = require('../models/translation.feild');
+var User = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -92,9 +92,47 @@ var isTranslateFeildExist = function(translateText){
 }
 
 
+// --------------------------------
+// user section
+// --------------------------------
+
+router.get('/user', function(req, res, next) {
+
+	
+	User.find({},function(err, result){
+		if(err){
+			console.log(err);
+			res.status(500).send(err);
+
+		}else{
+			res.send(result);
+		}
+		
+	});
+
+});
 
 
 
+
+router.post('/user', function(req, res, next) {
+	console.log(req.body);
+	var newUser = new User(req.body);
+	newUser.date = new Date();
+
+	var returnObject = global.newReturnObject();
+	newUser.save(function(err ,result){
+		
+		if(err){
+			console.log(err);
+			res.status(500).send(err);
+
+		}else{
+			res.send(result);
+		}
+	});
+
+});
 
 
 
