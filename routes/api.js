@@ -6,6 +6,8 @@ var async = require('async');
 var cheerio = require('cheerio');
 var mongoose = require('mongoose');
 var global = require('../lib/global');
+var constant = require('../lib/constant');
+
 var TranslationFeild = require('../models/translation.feild');
 var User = require('../models/user');
 
@@ -21,8 +23,11 @@ router.get('/', function(req, res, next) {
 // --------------------------------
 router.get('/constant/:key', function(req, res, next) {
 	
-	console.log(res.params);
-	res.send('dd');
+	if(!req.params.key){
+		res.status(500).send('no key');
+	}else{
+		res.send(constant[req.params.key]);
+	}
 });
 
 
