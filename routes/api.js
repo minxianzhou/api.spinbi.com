@@ -142,6 +142,18 @@ router.post('/user', function(req, res, next) {
 
 
 
+router.put('/user', function(req, res, next) {
+	
+	User.findOneAndUpdate({_id:req.body._id}, req.body, function (err, result) {
+		if(err){
+			console.log(err);
+			res.status(500).send(err);
+
+		}else{
+			res.send(result);
+		}
+	});
+});
 
 
 
