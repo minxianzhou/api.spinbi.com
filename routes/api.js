@@ -10,6 +10,8 @@ var constant = require('../lib/constant');
 
 var TranslationFeild = require('../models/translation.feild');
 var User = require('../models/user');
+var Contact = require('../models/contact');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -95,6 +97,46 @@ var isTranslateFeildExist = function(translateText){
 
 	return false;
 }
+
+
+
+// --------------------------------
+// contact section
+// --------------------------------
+
+
+router.get('/contact', function(req, res, next) {
+	Contact.find({},function(err, result){
+		if(err){
+			console.log(err);
+			res.status(500).send(err);
+		}else{
+			res.send(result);
+		}
+	});
+});
+
+
+
+
+router.post('/contact', function(req, res, next) {
+	console.log(req.body);
+
+	var newContact = new Contact(req.body);
+	newContact.date = new Date();
+
+	newContact.save(function(err ,result){
+		
+		if(err){
+			console.log(err);
+			res.status(500).send(err);
+
+		}else{
+			res.send(result);
+		}
+	});
+
+});
 
 
 // --------------------------------
