@@ -106,14 +106,25 @@ var isTranslateFeildExist = function(translateText){
 
 
 router.get('/contact', function(req, res, next) {
-	Contact.find({},function(err, result){
+
+	// Contact.find({},function(err, result){
+	// 	if(err){
+	// 		console.log(err);
+	// 		res.status(500).send(err);
+	// 	}else{
+	// 		res.send(result);
+	// 	}
+	// });
+	Contact.find({}).exec(function(err,results){
 		if(err){
 			console.log(err);
 			res.status(500).send(err);
+
 		}else{
-			res.send(result);
+			res.send(results);
 		}
 	});
+
 });
 
 
