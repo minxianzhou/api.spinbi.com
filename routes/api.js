@@ -150,6 +150,22 @@ router.post('/contact', function(req, res, next) {
 });
 
 
+router.put('/contact', function(req, res, next) {
+	
+	Contact.findOneAndUpdate({_id:req.body._id}, req.body, function (err, result) {
+		if(err){
+			console.log(err);
+			res.status(500).send(err);
+
+		}else{
+			res.send(result);
+		}
+	});
+});
+
+
+
+
 // --------------------------------
 // user section
 // --------------------------------
