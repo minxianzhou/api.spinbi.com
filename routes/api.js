@@ -292,6 +292,8 @@ router.post('/content', function(req, res, next) {
 					returnHtml = returnHtml.replaceAll(item.pattern, item.text);
 					callback();
 				}, function done(){
+
+					returnHtml = returnHtml + '<style type="text/css">body{background-color: white;}</style>';
 					next();
 				});
 		    }
