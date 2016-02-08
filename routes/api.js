@@ -4,13 +4,114 @@ var http = require('http');
 var cheerio = require('cheerio');
 var async = require('async');
 var cheerio = require('cheerio');
-var mongoose = require('mongoose');
+
 var global = require('../lib/global');
 var constant = require('../lib/constant');
+var Auth = require('../lib/auth');
 
 var TranslationFeild = require('../models/translation.feild');
 var User = require('../models/user');
 var Contact = require('../models/contact');
+var AccessToken = require('../models/access.token');
+
+
+
+
+
+//-------------------------  Auth Middleware ----------------------------------
+router.use(function(req,res,next){
+
+	var path = req.originalUrl;
+	var method = req.method;
+
+
+	// console.log(path);
+	// console.log('---------' + method + '--------');
+	// console.log(req.headers);
+
+
+	if(Auth.IsAuthException(path, method)){
+		next();
+	}else{
+		// check token from header
+		if( typeof req.headers.authorization === 'undefined'){
+			res.send(401,'401 auth error token');
+		}else{
+			console.log('---------' + method + '--------');
+			console.log(req.headers.authorization);
+			var accessToken = req.headers.authorization;
+			// var accessReferer = req.headers.referer;
+
+			Auth.IsTokenValid(accessToken, function(isValid){
+				if(isValid){
+					console.log('pass token validation');
+					next();
+				}else{
+					res.send(401,'401 auth error token');	
+				}		
+			
+			});
+
+			//next();
+		}
+		
+	}
+
+});
+
+
+router.post('/login', function(req, res, next) {
+
+	console.log(req.body);
+	User.findOne({email:req.body.email, password: req.body.password}, function(err, user){
+		
+		console.log(user);
+
+		if(err || user == null){
+			// return login fail info
+			res.json({
+				status: 'fail',
+				messages: 'account information was not correct.',
+				data: null
+			});
+		}else{
+			// login successfully, create user access token
+			var newToken = new AccessToken({
+				type: user.type,
+				user: user._id,
+				created: new Date()
+			});
+
+			newToken.save(function(err,token){
+				res.json({
+					status: 'ok',
+					messages: 'successed',
+					data: {
+						token : token,
+						user: user
+					}
+				});
+			});
+
+		}
+
+	});
+});
+
+router.get('/logout', function(req, res, next) {
+	var accessToken = req.headers.authorization;
+	AccessToken.find({_id:accessToken}).remove().exec(function(err){
+		res.json({
+			status: 'ok',
+			messages: 'logout',
+			data: null
+		});
+
+	});
+
+});
+
+
 
 
 /* GET home page. */
