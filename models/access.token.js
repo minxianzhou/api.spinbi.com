@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var AccessTokenSchema = new mongoose.Schema({
 	type: {type: String, required: true},
-	user : {type: String, required: true },
+	user : { type: mongoose.Schema.ObjectId, ref: 'User'},
 	created : {type : Date, default : Date.now },
 });
 

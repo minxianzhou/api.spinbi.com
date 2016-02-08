@@ -111,6 +111,21 @@ router.get('/logout', function(req, res, next) {
 
 });
 
+router.get('/account', function(req, res, next) {
+	var accessToken = req.headers.authorization;
+
+	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,result){
+		if(err || result == null){
+			res.json(null);
+		}else{
+			res.json(result.user);	
+		}
+		
+
+	});
+
+});
+
 
 
 
