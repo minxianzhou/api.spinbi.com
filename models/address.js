@@ -9,6 +9,6 @@ var AddressSchema = new mongoose.Schema({
 	zip : {type : String, required: true},
 });
 
-var Address = mongoose.model('Contact', AddressSchema);
+var Address = mongoose.model('Address', AddressSchema);
 
 module.exports = Address;

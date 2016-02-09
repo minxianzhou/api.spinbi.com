@@ -1,7 +1,15 @@
 var AccessToken = require('../models/access.token');
 var User = require('../models/user');
 var mongoose = require('mongoose');
+var crypto = require('crypto');
 
+
+
+
+exports.sha256 = function(pwd) {
+  var hash = crypto.createHash('sha256').update(pwd).digest('base64');
+  return hash;
+};
 
 
 exports.getUserByToken = function(token, callback){

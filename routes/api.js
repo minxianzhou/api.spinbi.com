@@ -63,7 +63,8 @@ router.use(function(req,res,next){
 router.post('/login', function(req, res, next) {
 
 	console.log(req.body);
-	User.findOne({email:req.body.email, password: req.body.password}, function(err, user){
+	var password = TokenCtrl.sha256(req.body.password);
+	User.findOne({email:req.body.email, password: password}, function(err, user){
 		
 		console.log(user);
 
@@ -129,10 +130,8 @@ router.get('/account', function(req, res, next) {
 
 
 router.put('/profile', function(req, res, next) {
-
 	var accessToken = req.headers.authorization;
 	var user =  TokenCtrl.getUserByToken(accessToken, function(user){
-
 		if( user == null)
 			res.json({
 				messages: 'fail'
@@ -152,27 +151,15 @@ router.put('/profile', function(req, res, next) {
 				else
 					res.json(user);
 			});
-
-
 		}
-
-
-
 	});
-
-
-
 });
-
-
-
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	res.render('index', { title: 'Express' });
 });
-
 
 
 // --------------------------------
@@ -191,8 +178,6 @@ router.get('/constant/:key', function(req, res, next) {
 // --------------------------------
 // language section
 // --------------------------------
-
-
 router.get('/translate', function(req, res, next) {
 
 	TranslationFeild.find({}).exec(function(err,results){
@@ -262,62 +247,76 @@ var isTranslateFeildExist = function(translateText){
 
 router.get('/contact', function(req, res, next) {
 
-	// Contact.find({},function(err, result){
-	// 	if(err){
-	// 		console.log(err);
-	// 		res.status(500).send(err);
-	// 	}else{
-	// 		res.send(result);
-	// 	}
-	// });
-	Contact.find({}).exec(function(err,results){
-		if(err){
-			console.log(err);
-			res.status(500).send(err);
+	var accessToken = req.headers.authorization;
 
+	TokenCtrl.getUserByToken(accessToken, function(user){
+		if(user == null){
+			res.status(500).send(err);
 		}else{
-			res.send(results);
+			Contact.find({user: user._id}).exec(function(err,results){
+				if(err){
+					console.log(err);
+					res.status(500).send(err);
+
+				}else{
+					res.send(results);
+				}
+			});
 		}
 	});
 
+
 });
-
-
 
 
 router.post('/contact', function(req, res, next) {
 	
 	var accessToken = req.headers.authorization;
 
-
-	var newContact = new Contact(req.body);
-	newContact.date = new Date();
-
-	newContact.save(function(err ,result){
-		
-		if(err){
-			console.log(err);
+	TokenCtrl.getUserByToken(accessToken, function(user){
+		if(user == null){
 			res.status(500).send(err);
-
 		}else{
-			res.send(result);
+			console.log(user);
+			var newContact = new Contact(req.body);
+			newContact.date = new Date();
+			newContact.user = user._id;
+
+			newContact.save(function(err ,result){
+				if(err){
+					res.status(500).send(err);
+				}else{
+					res.send(result);
+				}
+			});
 		}
 	});
+
 
 });
 
 
 router.put('/contact', function(req, res, next) {
 	
-	Contact.findOneAndUpdate({_id:req.body._id}, req.body, function (err, result) {
-		if(err){
-			console.log(err);
-			res.status(500).send(err);
+	var accessToken = req.headers.authorization;
 
+	TokenCtrl.getUserByToken(accessToken, function(user){
+		if(user == null){
+			res.status(500).send(err);
 		}else{
-			res.send(result);
+			Contact.findOneAndUpdate({_id:req.body._id, user: user._id}, req.body, function (err, result) {
+				if(err){
+					console.log(err);
+					res.status(500).send(err);
+
+				}else{
+					res.send(result);
+				}
+			});
 		}
 	});
+
+
 });
 
 
@@ -350,6 +349,7 @@ router.post('/user', function(req, res, next) {
 	console.log(req.body);
 	var newUser = new User(req.body);
 	newUser.date = new Date();
+	newUser.password = TokenCtrl.sha256(newUser.password);
 
 	var returnObject = global.newReturnObject();
 	newUser.save(function(err ,result){

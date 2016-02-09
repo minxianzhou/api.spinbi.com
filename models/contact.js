@@ -8,8 +8,9 @@ var ContactSchema = new mongoose.Schema({
 	legalLastName : {type : String, required: true},
 	email : {type : String, required: true},
 	phone : {type : String, default: '' },
-	currentAddress: { type: mongoose.Schema.ObjectId, ref: 'address'},
-	movingAddress: { type: mongoose.Schema.ObjectId, ref: 'address'},
+	user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true},
+	currentAddress: { type: mongoose.Schema.ObjectId, ref: 'Address'},
+	movingAddress: { type: mongoose.Schema.ObjectId, ref: 'Address'},
 	sin : { type : String},
 	date : { type: Date},
 });
