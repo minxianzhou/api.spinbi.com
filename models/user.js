@@ -9,9 +9,7 @@ var UserSchema = new mongoose.Schema({
 	status : {type : String, required: true, default: 'Pending'},
 	company : {type : String, default: ''},
 	phone : {type : String, default: '' },
-	// address : {type : String},
-	// province : {type : String},
-	// country : {type : String, default: 'Canada', required: true},
+	address : { type: mongoose.Schema.ObjectId, ref: 'Address'},
 	type : { type : String, required: true, default: 'Normal'},
 	date : { type: Date, required: true}
 });

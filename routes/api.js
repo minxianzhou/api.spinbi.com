@@ -15,7 +15,7 @@ var Contact = require('../models/contact');
 var AccessToken = require('../models/access.token');
 
 
-
+var TokenCtrl = require('../controllers/token');
 
 
 //-------------------------  Auth Middleware ----------------------------------
@@ -111,10 +111,11 @@ router.get('/logout', function(req, res, next) {
 
 });
 
+
 router.get('/account', function(req, res, next) {
 	var accessToken = req.headers.authorization;
 
-	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,result){
+	AccessToken.findOne({_id:accessToken}).populate('user').populate('user.address').exec(function(err,result){
 		if(err || result == null){
 			res.json(null);
 		}else{
@@ -125,6 +126,44 @@ router.get('/account', function(req, res, next) {
 	});
 
 });
+
+
+router.put('/profile', function(req, res, next) {
+
+	var accessToken = req.headers.authorization;
+	var user =  TokenCtrl.getUserByToken(accessToken, function(user){
+
+		if( user == null)
+			res.json({
+				messages: 'fail'
+			});
+		else{
+
+			user.firstName = req.body.firstName;
+			user.lastName = req.body.lastName;
+			user.phone = req.body.phone;
+			user.company = req.body.company;
+
+			user.save(function(err){
+				if(err)
+					res.json({
+						messages: 'fail'
+					});
+				else
+					res.json(user);
+			});
+
+
+		}
+
+
+
+	});
+
+
+
+});
+
 
 
 
@@ -247,7 +286,9 @@ router.get('/contact', function(req, res, next) {
 
 
 router.post('/contact', function(req, res, next) {
-	console.log(req.body);
+	
+	var accessToken = req.headers.authorization;
+
 
 	var newContact = new Contact(req.body);
 	newContact.date = new Date();
