@@ -424,7 +424,7 @@ router.post('/content', function(req, res, next) {
 		    },
 		    // get translation lib from db
 		    function(next){
-				TranslationFeild.find({}).sort('-length').exec(function(err,results){
+				TranslationFeild.find({language: req.body.language }).sort('-length').exec(function(err,results){
 					TranslateList = results;
 					next();
 				});
