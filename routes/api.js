@@ -325,44 +325,35 @@ router.put('/contact', function(req, res, next) {
 // --------------------------------
 // user section
 // --------------------------------
-
 router.get('/user', function(req, res, next) {
-
-	
 	User.find({},function(err, result){
 		if(err){
 			console.log(err);
 			res.status(500).send(err);
-
 		}else{
 			res.send(result);
 		}
-		
 	});
-
 });
 
 
 
 
+// create new user
 router.post('/user', function(req, res, next) {
-	console.log(req.body);
+
 	var newUser = new User(req.body);
 	newUser.date = new Date();
 	newUser.password = TokenCtrl.sha256(newUser.password);
 
-	var returnObject = global.newReturnObject();
 	newUser.save(function(err ,result){
-		
 		if(err){
 			console.log(err);
 			res.status(500).send(err);
-
 		}else{
 			res.send(result);
 		}
 	});
-
 });
 
 
@@ -387,87 +378,107 @@ router.put('/user', function(req, res, next) {
 router.post('/content', function(req, res, next) {
 
 
-	getHtmlContent(req.body.link, function(html) {
-		
-		// create dom object
-		$ = cheerio.load(html);
+	var accessToken = req.headers.authorization;
+
+	TokenCtrl.getUserByToken(accessToken, function(user){
+		if(user == null){
+			res.status(500).send(err);
+		}else{
+
+			var agentTitle = user.company;
+
+			getHtmlContent(req.body.link, function(html) {
+				
+				// create dom object
+				$ = cheerio.load(html);
 
 
-		var LinkList  = [];
-		var returnHtml = '';
-		var TranslateList = [];
+				var LinkList  = [];
+				var returnHtml = '';
+				var TranslateList = [];
 
 
-		String.prototype.replaceAll = function (find, replace) {
-		    var str = this;
-		    return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
-		};
+				String.prototype.replaceAll = function (find, replace) {
+				    var str = this;
+				    return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+				};
 
 
-		async.series([
+				async.series([
 
-			// get each indvidual item link from main page
-		    function(next){
-				// get relate dom object list
-				var dataList = $('.link-item');
-				// find 
-				async.eachSeries(dataList, function(item, callback) {
-					if(typeof item.attribs['data-deferred-loaded'] === 'undefined' )
-						LinkList.push(item.attribs['data-deferred-load']);
-					else
-						LinkList.push(item.attribs['data-deferred-loaded']);
-					callback();
-				}, function(err){
-					//console.log(LinkList);
-					next();
-				});
-		    },
-		    // get translation lib from db
-		    function(next){
-				TranslationFeild.find({language: req.body.language }).sort('-length').exec(function(err,results){
-					TranslateList = results;
-					next();
-				});
-		    },
-		    // get html content for each link
-		    function(next){
-		        
-		        async.eachSeries(LinkList, function(link, callback) {
-					getHtmlContent(link, function(content){
-						returnHtml += '<div class="link-item status-pc hasheader loaded">' + content + '</div>';
-						callback();
+					// get each indvidual item link from main page
+				    function(next){
+						// get relate dom object list
+						var dataList = $('.link-item');
+						// find 
+						async.eachSeries(dataList, function(item, callback) {
+							if(typeof item.attribs['data-deferred-loaded'] === 'undefined' )
+								LinkList.push(item.attribs['data-deferred-load']);
+							else
+								LinkList.push(item.attribs['data-deferred-loaded']);
+							callback();
+						}, function(err){
+							//console.log(LinkList);
+							next();
+						});
+				    },
+				    // get translation lib from db
+				    function(next){
+						TranslationFeild.find({language: req.body.language }).sort('-length').exec(function(err,results){
+							TranslateList = results;
+							next();
+						});
+				    },
+				    // get html content for each link
+				    function(next){
+				        
+				        async.eachSeries(LinkList, function(link, callback) {
+				        	console.log(link);
+							getHtmlContent(link, function(content){
+
+							    var $jq	= cheerio.load(html);
+							    var i = $jq('.links-container').replaceWith('test');
+							    console.log(i.html());
+
+								returnHtml += '<div class="link-item status-pc hasheader loaded">' + content + '</div>';
+								callback();
+							});
+						}, function(err){
+							next();
+						});
+
+				    },
+				    // do the translation here.
+				    function(next){
+				    	//returnHtml = translate(returnHtml);
+						async.eachSeries(TranslateList, function(item, callback) {
+							returnHtml = returnHtml.replaceAll(item.pattern, item.text);
+							callback();
+						}, function done(){
+
+							returnHtml = returnHtml + '<style type="text/css">body{background-color: white;}</style>';
+							next();
+						});
+				    }
+				],
+				// optional callback
+				function(err, results){
+
+					//res.end(returnHtml);
+
+					res.render('result', { 
+						title: 'tanslate result' ,
+						htmlContent: returnHtml
 					});
-				}, function(err){
-					next();
+				    
 				});
 
-		    },
-		    // do the translation here.
-		    function(next){
-		    	//returnHtml = translate(returnHtml);
-				async.eachSeries(TranslateList, function(item, callback) {
-					returnHtml = returnHtml.replaceAll(item.pattern, item.text);
-					callback();
-				}, function done(){
-
-					returnHtml = returnHtml + '<style type="text/css">body{background-color: white;}</style>';
-					next();
-				});
-		    }
-		],
-		// optional callback
-		function(err, results){
-
-			//res.end(returnHtml);
-
-			res.render('result', { 
-				title: 'tanslate result' ,
-				htmlContent: returnHtml
 			});
-		    
-		});
 
+
+		}
 	});
+
 
 });
 
