@@ -269,6 +269,38 @@ router.get('/contact', function(req, res, next) {
 });
 
 
+
+router.post('/contact/search', function(req, res, next) {
+	
+	var accessToken = req.headers.authorization;
+
+	TokenCtrl.getUserByToken(accessToken, function(user){
+		if(user == null){
+			res.status(500).send(err);
+		}else{
+			var search = req.body;
+
+			console.log(search);
+
+			var p = 'a';
+
+			Contact.find({firstName: '/'+ p +'/'}).exec(function(err, result){
+				res.json(result);
+			});
+
+
+			// res.json([{
+			// 	test: 'hello world'
+
+			// }]);
+
+		}
+	});
+
+
+});
+
+
 router.post('/contact', function(req, res, next) {
 	
 	var accessToken = req.headers.authorization;
@@ -385,11 +417,14 @@ router.post('/content', function(req, res, next) {
 			res.status(500).send(err);
 		}else{
 
-			var agentTitle = user.company;
+			var pageHeader = '<div class="page-header-heading">Prepared by: ' + user.firstName + '' + user.lastName + ', Salesperson</div>';
+			pageHeader += '<div class="page-header-heading">' + user.company + '</div>';
+			pageHeader += '<div> offical company addresss ' + user.phone + '</div>';
+
 
 			getHtmlContent(req.body.link, function(html) {
 				
-				// create dom object
+			
 				$ = cheerio.load(html);
 
 
@@ -436,11 +471,13 @@ router.post('/content', function(req, res, next) {
 				        	console.log(link);
 							getHtmlContent(link, function(content){
 
-							    var $jq	= cheerio.load(html);
-							    var i = $jq('.links-container').replaceWith('test');
-							    console.log(i.html());
+							    $ = cheerio.load(content);
+							    $('.links-container').html(pageHeader);
+							    $('.footer').html('');
+							    $('.formitem.formgroup.vertical').last().remove();
+							   	$('.formitem.formgroup.vertical').last().remove();
 
-								returnHtml += '<div class="link-item status-pc hasheader loaded">' + content + '</div>';
+								returnHtml += '<div class="link-item status-pc hasheader loaded">' + $.html() + '</div>';
 								callback();
 							});
 						}, function(err){
@@ -450,13 +487,23 @@ router.post('/content', function(req, res, next) {
 				    },
 				    // do the translation here.
 				    function(next){
-				    	//returnHtml = translate(returnHtml);
+				    
 						async.eachSeries(TranslateList, function(item, callback) {
+
+							// translate final content by word replacement, one by one
 							returnHtml = returnHtml.replaceAll(item.pattern, item.text);
 							callback();
 						}, function done(){
 
-							returnHtml = returnHtml + '<style type="text/css">body{background-color: white;}</style>';
+							// add custom styling into the list
+							var css = '';
+							css += '<style type="text/css">';
+							css += 'body{ background-color: white; }';
+							css += '.links-container{ text-align: center; margin-bottom: 20px; }';
+							css += '.page-header-heading{ font-size:13px; font-weight: bold; line-height: 20px }';
+							css += '</style>';
+
+							returnHtml = returnHtml +  css;
 							next();
 						});
 				    }
