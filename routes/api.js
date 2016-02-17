@@ -282,11 +282,42 @@ router.post('/contact/search', function(req, res, next) {
 
 			console.log(search);
 
-			var p = 'a';
 
-			Contact.find({firstName: '/'+ p +'/'}).exec(function(err, result){
-				res.json(result);
-			});
+
+			if(search.key == ''){
+
+				Contact.find({user: user._id}, function(err, results){
+					if(err)
+						console.log(err)
+					else{
+						console.log(results);
+						res.json(results);
+					}
+
+				});
+
+			}else{
+
+				Contact.search(search.key, { } ,{
+					conditions: {},
+					sort: {lastName: 1},
+					limit: search.limit
+				}, function(err, data) {
+
+					// array of finded results 
+					console.log(data.results);
+
+					// count of all matching objects 
+					console.log(data.totalCount);
+
+					res.json(data.results);
+
+				});
+
+
+			}
+
+
 
 
 			// res.json([{
