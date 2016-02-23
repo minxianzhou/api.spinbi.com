@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var searchPlugin = require('mongoose-search-plugin');
+// var searchPlugin = require('mongoose-search-plugin');
 
 
 var Schema = mongoose.Schema;
@@ -16,12 +16,13 @@ var ContactSchema = new mongoose.Schema({
 	movingAddress: { type: mongoose.Schema.ObjectId, ref: 'Address'},
 	sin : { type : String},
 	date : { type: Date},
+	_keywords : [{ type: String}]
 });
 
 
-ContactSchema.plugin(searchPlugin, {
-    fields: ['firstName', 'lastName', 'email', 'legalFirstName','legalLastName']
-  });
+// ContactSchema.plugin(searchPlugin, {
+//     fields: ['firstName', 'lastName', 'email', 'legalFirstName','legalLastName']
+//   });
  
 // ContactSchema.plugin(textSearch);
 // ContactSchema.index({ firstName: 'text' });

@@ -5,18 +5,20 @@ var cheerio = require('cheerio');
 var async = require('async');
 var cheerio = require('cheerio');
 
+// include lib files
 var global = require('../lib/global');
 var constant = require('../lib/constant');
 var Auth = require('../lib/auth');
 
+// include Model files
 var TranslationFeild = require('../models/translation.feild');
 var User = require('../models/user');
 var Contact = require('../models/contact');
 var AccessToken = require('../models/access.token');
 
-
+// include controller files
 var TokenCtrl = require('../controllers/token');
-
+var FormsCtrl = require('../controllers/forms');
 
 //-------------------------  Auth Middleware ----------------------------------
 router.use(function(req,res,next){
@@ -282,11 +284,27 @@ router.post('/contact/search', function(req, res, next) {
 
 			console.log(search);
 
+			var search_pattern = {}; 
 
+			var searchOrderValue = 1;
+			if(search.sortOrder == 'DESE'){
+				searchOrderValue= -1;
+			}
+
+
+			if(search.sortType == 'Date'){
+				search_pattern['date'] = searchOrderValue;
+			}else if(search.sortType == 'Email'){
+				search_pattern['email'] = searchOrderValue;
+			}else{
+				search_pattern['lastName'] = searchOrderValue;
+			}
+
+			
 
 			if(search.key == ''){
 
-				Contact.find({user: user._id}, function(err, results){
+				Contact.find({user: user._id}).sort(search_pattern).exec(function(err, results){
 					if(err)
 						console.log(err)
 					else{
@@ -298,33 +316,21 @@ router.post('/contact/search', function(req, res, next) {
 
 			}else{
 
-				Contact.search(search.key, { } ,{
-					conditions: {},
-					sort: {lastName: 1},
-					limit: search.limit
-				}, function(err, data) {
-
-					// array of finded results 
-					console.log(data.results);
-
-					// count of all matching objects 
-					console.log(data.totalCount);
-
-					res.json(data.results);
+				Contact.find({user: user._id, _keywords: { $regex: search.key, $options: "i" }})
+				.sort(search_pattern)
+				.limit(search.limit)
+				.exec(function(err, results){
+					if(err)
+						console.log(err)
+					else{
+						console.log(results);
+						res.json(results);
+					}
 
 				});
 
-
 			}
-
-
-
-
-			// res.json([{
-			// 	test: 'hello world'
-
-			// }]);
-
+ 
 		}
 	});
 
@@ -344,6 +350,14 @@ router.post('/contact', function(req, res, next) {
 			var newContact = new Contact(req.body);
 			newContact.date = new Date();
 			newContact.user = user._id;
+			// create search keywords
+			newContact._keywords.push(newContact.firstName);
+			newContact._keywords.push(newContact.lastName);
+			newContact._keywords.push(newContact.legalFirstName);
+			newContact._keywords.push(newContact.legalLastName);
+			newContact._keywords.push(newContact.email);
+			newContact._keywords.push(newContact.phone);
+
 
 			newContact.save(function(err ,result){
 				if(err){
@@ -367,6 +381,15 @@ router.put('/contact', function(req, res, next) {
 		if(user == null){
 			res.status(500).send(err);
 		}else{
+			req.body._keywords = [];
+			req.body._keywords.push(req.body.firstName);
+			req.body._keywords.push(req.body.lastName);
+			req.body._keywords.push(req.body.legalFirstName);
+			req.body._keywords.push(req.body.legalLastName);
+			req.body._keywords.push(req.body.email);
+			req.body._keywords.push(req.body.phone);
+
+
 			Contact.findOneAndUpdate({_id:req.body._id, user: user._id}, req.body, function (err, result) {
 				if(err){
 					console.log(err);
@@ -561,7 +584,11 @@ router.post('/content', function(req, res, next) {
 });
 
 
-
+// --------------------------------
+// forms generate section
+// --------------------------------
+router.post('/form/offer', FormsCtrl.generateOfferForms);
+router.post('/form/listing', FormsCtrl.generateListingForms);
 
 
 
@@ -588,4 +615,30 @@ var getHtmlContent = function( url, callBack){
 }
 
 
+
+
+
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
