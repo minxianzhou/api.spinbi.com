@@ -21,6 +21,12 @@ router.get('/translate', function(req, res, next) {
 });
 
 
+router.get('/pdfview', function(req, res) {
+	res.render('pdf/sample.html', { title: 'Express' });
+});
+
+
+
 router.get('/pdf', function(req, res, next) {
 
 

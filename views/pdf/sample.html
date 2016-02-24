@@ -196,6 +196,15 @@
 			/*background-color: gray;*/
 		}
 
+		.page-content .row .blank .content{
+		    position: absolute;
+		    top: 9px;
+		    left: 0;
+		    width: 95%;
+		    text-align: center;
+		    font-size: 12px;
+		}
+
 		.page-content .row .blank .udesc{
 			position: absolute;
 			bottom: -8px;
@@ -235,6 +244,7 @@
 		<div class="row high">
 		   <span class="cap">REAL PROPERTY ADDRESS: </span>	
 		   <div class="blank" style="width:450px">
+		   		<div class="content"><%= User.firstName + ' ' + User.lastName %></div>
 		   		<div class="udesc">(municipal address and/or legal description)</div>
 		   </div>
 		   (the “property”) 
@@ -242,11 +252,17 @@
 
 		<div class="row med">
 		   <span class="cap">for an Agreement of Purchase and Sale dated: </span>	
-		   <div class="blank" style="width:50px"></div>
+		   <div class="blank" style="width:50px">
+		   		<div class="content">23</div>
+		   </div>
 		   day of
-		   <div class="blank" style="width:222px"></div>
+		   <div class="blank" style="width:222px">
+		   		<div class="content">June</div>
+		   </div>
 		   , 20
-		   <div class="blank" style="width:40px"></div>
+		   <div class="blank" style="width:40px">
+		   		<div class="content">16</div>
+		   </div>
 		   (“offer”)
 		</div>
 
