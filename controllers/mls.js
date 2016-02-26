@@ -3,29 +3,49 @@ var User = require('../models/user');
 var mongoose = require('mongoose');
 var cheerio = require('cheerio');
 var http = require('http');
+var request = require('request');
 
 
 
+exports.getSingleProperty= function(MlsNumber, callback){
 
-exports.getSingleProperty= function(MlsNumber){
 
-
-	http.get(url, function(response){
-		var html = '';
-		//another chunk of data has been recieved, so append it to `html`
-		response.on('data', function (chunk) {
-			html += chunk;
-		});
-
-		//the whole response has been recieved, so we just print it out here
-		response.on('end', function () {
-			callBack(html);
-			
-		});
-
-	}).on('error', function(e){
-		console.log('Got error: ' + e.message);
+	request({
+	    url: 'https://www.realtor.ca/api/Listing.svc/PropertySearch_Post', //URL to hit
+	    form: {
+	    		ReferenceNumber: MlsNumber, 
+	    		CultureId: 1,
+	    		ApplicationId: 1
+	    },
+	    method: 'POST',
+	    headers: {
+	        'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
+	    },
+	}, function(error, response, body){
+	    if(error) {
+	        callback(error);
+	    } else {
+	        //console.log(response.statusCode, body);
+	        callback(null, body);
+	    }
 	});
+
+	// http.get(url, function(response){
+	// 	var html = '';
+	// 	//another chunk of data has been recieved, so append it to `html`
+	// 	response.on('data', function (chunk) {
+	// 		html += chunk;
+	// 	});
+
+	// 	//the whole response has been recieved, so we just print it out here
+	// 	response.on('end', function () {
+	// 		callBack(html);
+			
+	// 	});
+
+	// }).on('error', function(e){
+	// 	console.log('Got error: ' + e.message);
+	// });
 }
 
 

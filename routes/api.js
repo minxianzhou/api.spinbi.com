@@ -589,7 +589,24 @@ router.post('/content', function(req, res, next) {
 // --------------------------------
 // Mls section
 // --------------------------------
-router.get('/mls/single/:id', FormsCtrl.generateOfferForms);
+router.get('/mls/single/:id', function(req,res){
+    var propertyNumber = req.params.id;
+
+    Mls.getSingleProperty(propertyNumber, function(err, response){
+    	if(err){
+    		console.log(err);
+    		res.send(err);
+    	}else{
+    		
+
+    		var result = JSON.parse(response);
+    		console.log(result);
+    		res.send(result.Results[0]);
+    	}
+    });
+
+	//res.send(req.params.id);
+});
 
 // --------------------------------
 // forms generate section
