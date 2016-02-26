@@ -3,7 +3,7 @@ var router = express.Router();
 var http = require('http');
 var cheerio = require('cheerio');
 var async = require('async');
-var cheerio = require('cheerio');
+
 
 // include lib files
 var global = require('../lib/global');
@@ -19,6 +19,7 @@ var AccessToken = require('../models/access.token');
 // include controller files
 var TokenCtrl = require('../controllers/token');
 var FormsCtrl = require('../controllers/forms');
+var Mls = require('../controllers/mls');
 
 //-------------------------  Auth Middleware ----------------------------------
 router.use(function(req,res,next){
@@ -583,6 +584,12 @@ router.post('/content', function(req, res, next) {
 
 });
 
+
+
+// --------------------------------
+// Mls section
+// --------------------------------
+router.get('/mls/single/:id', FormsCtrl.generateOfferForms);
 
 // --------------------------------
 // forms generate section
