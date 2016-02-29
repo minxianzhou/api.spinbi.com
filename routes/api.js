@@ -20,6 +20,7 @@ var AccessToken = require('../models/access.token');
 var TokenCtrl = require('../controllers/token');
 var FormsCtrl = require('../controllers/forms');
 var Mls = require('../controllers/mls');
+var OfferCtrl = require('../controllers/offer');
 
 //-------------------------  Auth Middleware ----------------------------------
 router.use(function(req,res,next){
@@ -607,6 +608,15 @@ router.get('/mls/single/:id', function(req,res){
 
 	//res.send(req.params.id);
 });
+
+
+
+// --------------------------------
+// offer section
+// --------------------------------
+
+router.post('/offer', OfferCtrl.create);
+
 
 // --------------------------------
 // forms generate section

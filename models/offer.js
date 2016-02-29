@@ -4,17 +4,19 @@ var Schema = mongoose.Schema;
 var OfferSchema = new mongoose.Schema({
 
 	// offer basic info
-	title : {type: String, required: true},
+	title : {type: String, required: true, default: 'New Offer'},
 	created : {type: Date, required: true, default: new Date() },
+ 	deadline: {type: Date},
+ 	closing_date: {type: Date},
 
 	// buyer infomation
-	buyer_first_name : {type : String, required: true， default: '' },
-	buyer_last_name : {type : String, required: true， default: '' },
+	buyer_first_name : {type : String, required: true, default: '' },
+	buyer_last_name : {type : String, required: true, default: '' },
 
 
 	// saller infomation
-	saller_first_name : {type : String, required: true， default: '' },
-	saller_last_name : {type : String, required: true， default: '' },
+	saller_first_name : {type : String, required: true, default: '' },
+	saller_last_name : {type : String, required: true, default: '' },
 
 
 	// property information
