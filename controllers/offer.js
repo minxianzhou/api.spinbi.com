@@ -30,7 +30,20 @@ exports.create = function(req,res){
 			var user = tokenObj.user;
 
 			var newOffer = new Offer(req.body);
-			res.send(newOffer);
+			newOffer.agent = tokenObj.user._id;
+			console.log(newOffer);
+
+
+			newOffer.save(function(err ,result){
+				if(err){
+					console.log(err);
+					res.status(500).send(err);
+				}else{
+					res.send(result);
+				}
+			});
+
+			//res.send(newOffer);
 		}
 	});
 }
