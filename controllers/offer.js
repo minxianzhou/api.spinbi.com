@@ -31,6 +31,7 @@ exports.create = function(req,res){
 
 			var newOffer = new Offer(req.body);
 			newOffer.agent = tokenObj.user._id;
+			newOffer.contact = req.body.contactId;
 			console.log(newOffer);
 
 
@@ -43,6 +44,7 @@ exports.create = function(req,res){
 				}
 			});
 
+	
 			//res.send(newOffer);
 		}
 	});
@@ -52,3 +54,35 @@ exports.create = function(req,res){
 
 
 
+exports.getAllForAgent = function(req,res){
+
+	var accessToken = req.headers.authorization;
+	console.log(accessToken);
+
+	console.log('hello....');
+
+
+	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
+		
+		if(err || tokenObj == null){
+			res.send('err');
+		}else{
+
+			var user = tokenObj.user;
+
+			Offer.find({agent: user._id, contact: req.body.contactId}, function(err, result){
+				
+				if(err){
+					console.log(err);
+					res.status(500).send(err);
+				}else{
+					console.log(result);
+					res.send(result);
+				}
+
+			});
+
+			
+		}
+	});
+}

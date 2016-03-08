@@ -25,7 +25,9 @@ var OfferSchema = new mongoose.Schema({
 	
 
 	// agent object
-	agent : { type: mongoose.Schema.ObjectId, ref: 'User', required: true}
+	agent : { type: mongoose.Schema.ObjectId, ref: 'User', required: true},
+
+	contact: { type: mongoose.Schema.ObjectId, ref: 'Contact', required: true}
 });
 
 var Offer = mongoose.model('Offer', OfferSchema);

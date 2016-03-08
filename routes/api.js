@@ -616,7 +616,7 @@ router.get('/mls/single/:id', function(req,res){
 // --------------------------------
 
 router.post('/offer', OfferCtrl.create);
-
+router.post('/offer/getOffers', OfferCtrl.getAllForAgent);
 
 // --------------------------------
 // forms generate section
