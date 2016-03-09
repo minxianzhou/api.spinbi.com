@@ -54,37 +54,23 @@ exports.update = function(req,res){
 
 	var accessToken = req.headers.authorization;
 	console.log(accessToken);
-
+	console.log(req.body);
 	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
-		
 		if(err || tokenObj == null){
 			res.send('err');
 		}else{
-
 			var user = tokenObj.user;
-
-			var newOffer = new Offer(req.body);
-			newOffer.agent = tokenObj.user._id;
-			newOffer.contact = req.body.contactId;
-			console.log(newOffer);
-
-
-			newOffer.save(function(err ,result){
+			Offer.findOneAndUpdate({_id:req.body._id, agent: user._id}, req.body, function(err ,doc){
 				if(err){
 					console.log(err);
 					res.status(500).send(err);
 				}else{
-					res.send(result);
+					res.send(doc);
 				}
 			});
-
-	
-			//res.send(newOffer);
 		}
 	});
 }
-
-
 
 
 exports.getAllForAgent = function(req,res){
