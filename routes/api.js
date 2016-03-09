@@ -616,6 +616,7 @@ router.get('/mls/single/:id', function(req,res){
 // --------------------------------
 
 router.post('/offer', OfferCtrl.create);
+router.put('/offer/:id', OfferCtrl.update);
 router.post('/offer/getOffers', OfferCtrl.getAllForAgent);
 
 // --------------------------------
