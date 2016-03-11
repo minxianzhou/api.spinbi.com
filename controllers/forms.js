@@ -8,8 +8,37 @@ var pdf = require('html-pdf');
 var os = require("os");	
 var uuid = require('node-uuid');
 
+// require model
+var Forms = require('../models/forms');
 
 
+exports.getFormByClient = function(req,res){
+
+	var accessToken = req.headers.authorization;
+
+	console.log(accessToken);
+	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
+
+		if(err || tokenObj == null){
+			callback(null);
+		}else{
+
+			var clientId = req.body.clientId;
+
+			Forms.find({client:clientId}, function(err, result){
+
+				if(err){
+					console.log(err);
+				}else{
+					res.send(result);
+				}
+			});
+			
+
+		}
+	});
+
+}
 
 exports.generateOfferForms = function(req,res){
 
