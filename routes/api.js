@@ -21,6 +21,7 @@ var TokenCtrl = require('../controllers/token');
 var FormsCtrl = require('../controllers/forms');
 var Mls = require('../controllers/mls');
 var OfferCtrl = require('../controllers/offer');
+var ListingCtrl = require('../controllers/listing');
 
 //-------------------------  Auth Middleware ----------------------------------
 router.use(function(req,res,next){
@@ -284,7 +285,7 @@ router.post('/contact/search', function(req, res, next) {
 		}else{
 			var search = req.body;
 
-			console.log(search);
+			//console.log(search);
 
 			var search_pattern = {}; 
 
@@ -310,7 +311,7 @@ router.post('/contact/search', function(req, res, next) {
 					if(err)
 						console.log(err)
 					else{
-						console.log(results);
+						//console.log(results);
 						res.json(results);
 					}
 
@@ -620,11 +621,20 @@ router.put('/offer', OfferCtrl.update);
 router.post('/offer/getOffers', OfferCtrl.getAllForAgent);
 
 // --------------------------------
+// listing section
+// --------------------------------
+
+router.post('/listing', ListingCtrl.create);
+router.put('/listing', ListingCtrl.update);
+router.post('/listing/getListings', ListingCtrl.getAllForAgent);
+
+
+// --------------------------------
 // forms generate section
 // --------------------------------
 router.post('/form/offer', FormsCtrl.generateOfferForms);
 router.post('/form/listing', FormsCtrl.generateListingForms);
-
+router.post('/form/getFormByOffer', FormsCtrl.getFormByOffer );
 
 
 

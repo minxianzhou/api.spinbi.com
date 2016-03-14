@@ -30,22 +30,6 @@ exports.getSingleProperty= function(MlsNumber, callback){
 	    }
 	});
 
-	// http.get(url, function(response){
-	// 	var html = '';
-	// 	//another chunk of data has been recieved, so append it to `html`
-	// 	response.on('data', function (chunk) {
-	// 		html += chunk;
-	// 	});
-
-	// 	//the whole response has been recieved, so we just print it out here
-	// 	response.on('end', function () {
-	// 		callBack(html);
-			
-	// 	});
-
-	// }).on('error', function(e){
-	// 	console.log('Got error: ' + e.message);
-	// });
 }
 
 

@@ -12,20 +12,19 @@ var uuid = require('node-uuid');
 var Forms = require('../models/forms');
 
 
-exports.getFormByClient = function(req,res){
+exports.getFormByOffer = function(req,res){
 
 	var accessToken = req.headers.authorization;
-
-	console.log(accessToken);
 	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
 
 		if(err || tokenObj == null){
 			callback(null);
 		}else{
 
-			var clientId = req.body.clientId;
+			var offerId = req.body.OfferId;
+			console.log(offerId);
 
-			Forms.find({client:clientId}, function(err, result){
+			Forms.find({ offer:offerId }, function(err, result){
 
 				if(err){
 					console.log(err);
@@ -45,22 +44,26 @@ exports.generateOfferForms = function(req,res){
 	var accessToken = req.headers.authorization;
 
 	console.log('offer pdf file start here ... ');
-	console.log(accessToken);
+
 	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
-					console.log(err);
-			console.log(tokenObj);
+
 		if(err || tokenObj == null){
 
 			callback(null);
 		}else{
 
 			var contact = req.body.Contact;
+			var offer = req.body.Offer;
 			
+
+			console.log(offer);
+
 			var user = tokenObj.user;
-			console.log(user);
+		
 
 			var html = fs.readFileSync('./views/pdf/sample.html', 'utf8');
-			var renderHtml = ejs.render(html, { User: contact });
+
+			var renderHtml = ejs.render(html, { User: contact, Offer: offer });
 		
 			var options = { 
 				format: 'Letter',
@@ -81,11 +84,27 @@ exports.generateOfferForms = function(req,res){
 
 			  if (err) return console.log(err);
 
-			  console.log(result);
-			  console.log(req.headers);
-			  console.log(req.headers.host);
-			  res.json ({
-			  	link: 'http://'+ req.headers.host + '/temp/forms/' + filename
+			  // console.log(result);
+			  // console.log(req.headers);
+			  // console.log(req.headers.host);
+
+			  var pdf_link = 'http://'+ req.headers.host + '/temp/forms/' + filename;
+
+			  console.log(pdf_link);
+
+
+
+			  // create form record
+			  var newForm = new Forms();
+			  newForm.path = pdf_link;
+			  newForm.offer = offer._id;
+			  newForm.type = 'Offer';
+			  newForm.created = new Date();
+			  
+			  newForm.save(function(err,result){
+				  res.json ({
+				  	link: pdf_link
+				  });	  	
 			  });
 
 			});

@@ -3,7 +3,7 @@
 // require models
 var AccessToken = require('../models/access.token');
 var User = require('../models/user');
-var Offer = require('../models/offer');
+var Listing = require('../models/listing');
 
 
 
@@ -21,13 +21,13 @@ exports.create = function(req,res){
 
 			var user = tokenObj.user;
 
-			var newOffer = new Offer(req.body);
-			newOffer.agent = tokenObj.user._id;
-			newOffer.contact = req.body.contactId;
-			console.log(newOffer);
+			var newListing = new Listing(req.body);
+			newListing.agent = tokenObj.user._id;
+			newListing.contact = req.body.contactId;
+			console.log(newListing);
 
 
-			newOffer.save(function(err ,result){
+			newListing.save(function(err ,result){
 				if(err){
 					console.log(err);
 					res.status(500).send(err);
@@ -52,7 +52,7 @@ exports.update = function(req,res){
 			res.send('err');
 		}else{
 			var user = tokenObj.user;
-			Offer.findOneAndUpdate({_id:req.body._id, agent: user._id}, req.body, function(err ,doc){
+			Listing.findOneAndUpdate({_id:req.body._id, agent: user._id}, req.body, function(err ,doc){
 				if(err){
 					console.log(err);
 					res.status(500).send(err);
@@ -68,9 +68,6 @@ exports.update = function(req,res){
 exports.getAllForAgent = function(req,res){
 
 	var accessToken = req.headers.authorization;
-	console.log(accessToken);
-
-	console.log('hello....');
 
 
 	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
@@ -81,7 +78,7 @@ exports.getAllForAgent = function(req,res){
 
 			var user = tokenObj.user;
 
-			Offer.find({agent: user._id, contact: req.body.contactId}, function(err, result){
+			Listing.find({agent: user._id, contact: req.body.contactId}, function(err, result){
 				
 				if(err){
 					console.log(err);
