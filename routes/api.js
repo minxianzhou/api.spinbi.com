@@ -127,8 +127,6 @@ router.get('/account', function(req, res, next) {
 		}else{
 			res.json(result.user);	
 		}
-		
-
 	});
 
 });
