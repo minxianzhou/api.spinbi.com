@@ -45,7 +45,7 @@ exports.create = function(req,res){
 exports.update = function(req,res){
 
 	var accessToken = req.headers.authorization;
-	console.log(accessToken);
+	console.log('-------------- listing update ---------------');
 	console.log(req.body);
 	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
 		if(err || tokenObj == null){

@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var FormSchema = new mongoose.Schema({
 	path : {type: String, require},
 	created : {type: Date, default: new Date() },
-	offer : { type: mongoose.Schema.ObjectId, ref: 'Offer', required: true},
+	offer : { type: mongoose.Schema.ObjectId, ref: 'Offer'},
+	listing : { type: mongoose.Schema.ObjectId, ref: 'Listing'},
 	type : {type: String, default: 'Offer'},
 });
 

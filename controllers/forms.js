@@ -39,6 +39,36 @@ exports.getFormByOffer = function(req,res){
 
 }
 
+
+exports.getFormByListing = function(req,res){
+
+	var accessToken = req.headers.authorization;
+	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
+
+		if(err || tokenObj == null){
+			callback(null);
+		}else{
+
+			var listingId = req.body.ListingId;
+	
+
+			Forms.find({ listing:listingId }, function(err, result){
+
+				if(err){
+					console.log(err);
+				}else{
+					res.send(result);
+				}
+			});
+			
+
+		}
+	});
+
+}
+
+
+
 exports.generateOfferForms = function(req,res){
 
 	var accessToken = req.headers.authorization;
@@ -61,7 +91,7 @@ exports.generateOfferForms = function(req,res){
 			var user = tokenObj.user;
 		
 
-			var html = fs.readFileSync('./views/pdf/sample.html', 'utf8');
+			var html = fs.readFileSync('./views/pdf/offer.html', 'utf8');
 
 			var renderHtml = ejs.render(html, { User: contact, Offer: offer });
 		
@@ -71,7 +101,7 @@ exports.generateOfferForms = function(req,res){
 				"border": {
 				    "top": "7mm",            // default is 0, units: mm, cm, in, px 
 				    "right": "10mm",
-				    "bottom": "7mm",
+				    "bottom": "3mm",
 				    "left": "10mm"
 				},
 			};
@@ -100,7 +130,7 @@ exports.generateOfferForms = function(req,res){
 			  newForm.offer = offer._id;
 			  newForm.type = 'Offer';
 			  newForm.created = new Date();
-			  
+
 			  newForm.save(function(err,result){
 				  res.json ({
 				  	link: pdf_link
@@ -119,53 +149,106 @@ exports.generateOfferForms = function(req,res){
 
 exports.generateListingForms = function(req,res){
 
+
 	var accessToken = req.headers.authorization;
 
-	// AccessToken.findOne({_id:token}).populate('user').exec(function(err,tokenObj){
-	// 	if(err || tokenObj == null){
-	// 		callback(null);
-	// 	}else{
-	// 		User.findOne({ _id: tokenObj.user._id}, function(err, currentUser){
+	console.log('listing pdf file start here ... ');
 
-	// 			if(!currentUser){
-	// 				callback(null);
-	// 			}else{
-	// 				callback(currentUser);
-	// 			}
+	AccessToken.findOne({_id:accessToken}).populate('user').exec(function(err,tokenObj){
 
-	// 		});
-	// 	}
-	// });
+		if(err || tokenObj == null){
 
-	var html = fs.readFileSync('./views/pdf/listing.html', 'utf8');
-	console.log(html);
-	var options = { 
-		format: 'Letter',
-		"orientation": "portrait",
-		"border": {
-		    "top": "7mm",            // default is 0, units: mm, cm, in, px 
-		    "right": "10mm",
-		    "bottom": "7mm",
-		    "left": "10mm"
-		},
-	};
+			callback(null);
+		}else{
+
+			var contact = req.body.Contact;
+			var listing = req.body.Listing;
+			
+			var user = tokenObj.user;
+		
+			var html = fs.readFileSync('./views/pdf/listing.html', 'utf8');
+
+			var renderHtml = ejs.render(html, { User: contact, Offer: listing });
+		
+			var options = { 
+				format: 'Letter',
+				"orientation": "portrait",
+				"border": {
+				    "top": "7mm",            // default is 0, units: mm, cm, in, px 
+				    "right": "10mm",
+				    "bottom": "7mm",
+				    "left": "10mm"
+				},
+			};
+		 
+
+		 	var filename =  'listing_' + uuid.v4() + '.pdf';
+		 	var path = './public/temp/forms/' + filename;
+
+			pdf.create(renderHtml, options).toFile(path, function(err, result) {
+
+			  if (err) return console.log(err);
+
+			  // console.log(result);
+			  // console.log(req.headers);
+			  // console.log(req.headers.host);
+
+			  var pdf_link = 'http://'+ req.headers.host + '/temp/forms/' + filename;
+
+			  console.log(pdf_link);
+
+			  // create form record
+			  var newForm = new Forms();
+			  newForm.path = pdf_link;
+			  //newForm.offer = offer._id;
+			  newForm.listing = listing._id;
+			  newForm.type = 'Listing';
+			  newForm.created = new Date();
+
+			  newForm.save(function(err,result){
+				  res.json ({
+				  	link: pdf_link
+				  });	  	
+			  });
+
+			});
+
+		}
+	});
+
+
+	// var accessToken = req.headers.authorization;
+
+
+	// var html = fs.readFileSync('./views/pdf/listing.html', 'utf8');
+	// console.log(html);
+	// var options = { 
+	// 	format: 'Letter',
+	// 	"orientation": "portrait",
+	// 	"border": {
+	// 	    "top": "7mm",            // default is 0, units: mm, cm, in, px 
+	// 	    "right": "10mm",
+	// 	    "bottom": "7mm",
+	// 	    "left": "10mm"
+	// 	},
+	// };
  
 
- 	var filename = 'lising_' + uuid.v4() + '.pdf';
- 	var path = './public/temp/forms/' + filename;
+ // 	var filename = 'lising_' + uuid.v4() + '.pdf';
+ // 	var path = './public/temp/forms/' + filename;
 
-	pdf.create(html, options).toFile(path, function(err, result) {
+	// pdf.create(html, options).toFile(path, function(err, result) {
 
-	  if (err) return console.log(err);
+	//   if (err) return console.log(err);
 
-	  console.log(result); // { filename: '/app/businesscard.pdf' } 
-	  console.log(req.headers);
-	  console.log(req.headers.host);
-	  res.json ({
-	  	link: 'http://'+ req.headers.host + '/temp/forms/' + filename
-	  });
+	//   console.log(result); // { filename: '/app/businesscard.pdf' } 
+	//   console.log(req.headers);
+	//   console.log(req.headers.host);
+	//   res.json ({
+	//   	link: 'http://'+ req.headers.host + '/temp/forms/' + filename
+	//   });
 
-	});
+	// });
 
 
 }

@@ -22,7 +22,7 @@ router.get('/translate', function(req, res, next) {
 
 
 router.get('/pdfview', function(req, res) {
-	res.render('pdf/sample.html', { title: 'Express' });
+	res.render('pdf/offer.html', { title: 'Express' });
 });
 
 

@@ -633,7 +633,7 @@ router.post('/listing/getListings', ListingCtrl.getAllForAgent);
 router.post('/form/offer', FormsCtrl.generateOfferForms);
 router.post('/form/listing', FormsCtrl.generateListingForms);
 router.post('/form/getFormByOffer', FormsCtrl.getFormByOffer );
-
+router.post('/form/getFormByListing', FormsCtrl.getFormByListing );
 
 
 var getHtmlContent = function( url, callBack){
