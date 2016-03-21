@@ -72,10 +72,20 @@
 			.page-break {page-break-after: always;}
 		}
 
+		.clearFix {
+			clear: both;
+		}
+
 		.top-margin{
 			margin-top: 20px;
 		}
 		
+		.indents{
+			display: inline-block;
+			width: 20px;
+		}
+
+
 		.cap{
 			font-weight: bold;
 			
@@ -223,13 +233,47 @@
 			width: 12px;
 		}
 
+		.initial-box{
+			/*background-color: gray;*/
+			display: inline-block;
+			height: 70px;
+			vertical-align: middle;
+
+		}
+		.initial-box .text{
+			/*background-color: gray;*/
+			display: inline-block;
+			height: 100%;
+			vertical-align: middle;
+
+		}
+		.initial-box .box{
+			display: inline-block;
+			background-color: white;
+			width: 70px;
+			height: 70px;		
+			border: 1px solid #000;	
+			border-radius: 35px;
+			transform:scaleX(1.5);
+			transform:scaleY(0.4);
+		}
+
 		.page-content{
 			height: 770px;
 		}
 
+		.page-content p{
+			line-height: 14px;
+		}
+
 		.page-content .row{
 			position: relative;
-			height: 15px;
+			min-height: 15px;
+		}
+
+		.page-content .row.thin{
+			height: 15px;	
+			line-height: 15px;
 		}
 		.page-content .row.med{
 			height: 28px;	
@@ -238,7 +282,29 @@
 			height: 31px;	
 		}
 
+		.page-content .row.super-high{
+			line-height: 50px;	
+		}
 
+
+		.page-content .row.p{
+			line-height: 14px;	
+		}
+
+
+		.page-content .row.col2{
+			
+		}
+
+		.page-content .row.col2 .left{
+			display: inline-block;
+			float: left;
+		}
+
+		.page-content .row.col2 .right{
+			display: inline-block;
+			float: right;
+		}
 
 		.page-content .row .blank{
 			position: relative;
@@ -823,7 +889,7 @@
 
 
 
-
+	<!-- page two, form 100 -->
 
 	<div class="page-break"></div>
 
@@ -997,6 +1063,178 @@
 			(the “property”).
 		</div>
 
+		<div class="row col2 super-high">
+			<div class="left"><span class="cap">PURCHASE PRICE:</span></div>
+			<div class="right">
+				Dollars (CDN$)
+				<div class="blank" style="width:200px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row med clearFix">
+			<div class="blank" style="width:640px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+			Dollars
+		</div>
+
+		<div class="row high">
+			<span class="cap">DEPOSIT:</span> Buyer submits 
+			<div class="blank" style="width:550px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">Upon acceptance</div>
+				<div class="udesc">(Herewith/Upon Acceptance/as otherwise described in this Agreement)</div>
+			</div>
+		</div>
+
+		<div class="row med">
+			<div class="blank" style="width:440px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">Upon acceptance</div>
+			</div>
+			Dollars (CDN$)
+			<div class="blank" style="width:150px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">Upon acceptance</div>
+			</div>
+		</div>
+
+		<div class="row p">
+			by negotiable cheque payable to
+			<div class="blank" style="width:440px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">Upon acceptance</div>
+			</div>
+			“Deposit Holder”
+			to be held in trust pending completion or other termination of this Agreement and to be credited toward the Purchase Price on completion.
+			For the purposes of this Agreement, “Upon Acceptance” shall mean that the Buyer is required to deliver the deposit to the
+			Deposit Holder within 24 hours of the acceptance of this Agreement. The parties to this Agreement hereby acknowledge that,
+			unless otherwise provided for in this Agreement, the Deposit Holder shall place the deposit in trust in the Deposit Holder’s
+			non-interest bearing Real Estate Trust Account and no interest shall be earned, received or paid on the deposit.
+		</div>
+
+		<div class="row thin cap">
+			Buyer agrees to pay the balance as more particularly set out in Schedule A attached.
+		</div>
+
+		<div class="row med">
+			<span class="cap">SCHEDULE(S) A</span>
+			<div class="blank" style="width:325px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"> and B</div>
+			</div>
+			<span class="cap">attached hereto form(s) part of this Agreement.</span>
+		</div>
+
+		<div class="row med">
+			<div class="indents">1.</div> 
+			<span class="cap">IRREVOCABILITY: </span>
+			This offer shall be irrevocable by 
+			<div class="blank" style="width:260px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">Buyer</div>
+				<div class="udesc">(Seller/Buyer)</div>
+			</div>
+			until
+			<div class="blank" style="width:50px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">11:59</div>
+			</div>
+			p.m. 
+			<div class="separator"></div>
+			on
+		</div>
+
+		<div class="row med">
+			<div class="indents"></div>
+			the 
+			<div class="blank" style="width:150px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">11:59</div>
+			</div>
+			day of
+			<div class="blank" style="width:160px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">11:59</div>
+			</div>
+			20 
+			<div class="blank" style="width:50px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">11:59</div>
+			</div>
+			, after which time, if not accepted, this
+		</div>
+
+		<div class="row">
+			<div class="indents"></div>
+			offer shall be null and void and the deposit shall be returned to the Buyer in full without interest.
+		</div>
+
+
+		<div class="row med">
+			<div class="indents">2.</div> 
+			<span class="cap">COMPLETION DATE: </span>
+			This Agreement shall be completed by no later than 6:00 p.m. on the
+			<div class="blank" style="width:170px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+			day
+		</div>
+
+		<div class="row med">
+			<div class="indents"></div>
+			of 
+			<div class="blank" style="width:200px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">11:59</div>
+			</div>
+			,20
+			<div class="blank" style="width:50px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content">11:59</div>
+			</div>
+			Upon completion, vacant possession of the property shall be given to the
+		</div>
+
+		<div class="row">
+			<div class="indents"></div>
+			offer shall be null and void and the deposit shall be returned to the Buyer in full without interest.
+		</div>
+
+
+		<div class="row">
+			<div class="initial-box">
+				<div class="text cap">INITIALS OF BUYER(S):</div>
+				<div class="box"></div>
+			</div>
+
+			<div class="initial-box">
+				<div class="text cap">INITIALS OF SELLER(S):</div>
+				<div class="box"></div>
+			</div>
+		</div>
+
+
 	</div>
 
 
@@ -1006,12 +1244,10 @@
 		<div class="desc1">
 			The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by The Canadian Real Estate Association CREA) and identify real estate professionals who are members of CREA. Used under license.
 		</div>
-		<div class="desc2">
-			© 2015, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction of its members and licensees only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter when printing or reproducing the standard pre-set portion. OREA bears no liability for your use of this form.
-		</div>
+
 
 		<div class="page-info">
-			<div><span class="cap">Form 801</span> Revised 2016 <span class="cap">Page 1 of 1</span></div>
+			<div><span class="cap">Form 100</span> Revised 2016 <span class="cap">Page 1 of 7</span></div>
 			<div>WEBForms® Jun/2016</div>
 		</div>
 	</footer>
