@@ -83,8 +83,27 @@
 		.indents{
 			display: inline-block;
 			width: 20px;
+			vertical-align: top;
+		}
+		.indent-right-content{
+			display: inline-block;
+			width: 96%
 		}
 
+		.empty-row{
+			height: 6px;
+		}
+
+		.text-box{
+			height: 80px;
+			border: 1px solid #000;
+			padding: 15px;
+			font-size: 10px;
+			font-family: initial;
+		}
+		.text-box.no-border{
+			border: 0;
+		}
 
 		.cap{
 			font-weight: bold;
@@ -254,7 +273,13 @@
 			height: 70px;		
 			border: 1px solid #000;	
 			border-radius: 35px;
+
+			-ms-transform: scaleX(1.5); /* IE 9 */
+		    -webkit-transform: scaleX(1.5); /* Chrome, Safari, Opera */
 			transform:scaleX(1.5);
+
+			-ms-transform: scaleY(0.4); /* IE 9 */
+		    -webkit-transform: scaleY(0.4); /* Chrome, Safari, Opera */
 			transform:scaleY(0.4);
 		}
 
@@ -263,12 +288,16 @@
 		}
 
 		.page-content p{
-			line-height: 14px;
+			line-height: 13px;
 		}
 
 		.page-content .row{
 			position: relative;
 			min-height: 15px;
+		}
+
+		.page-content .row.flat{
+			min-height: 6px;
 		}
 
 		.page-content .row.thin{
@@ -288,9 +317,11 @@
 
 
 		.page-content .row.p{
-			line-height: 14px;	
+			line-height: 15px;	
 		}
-
+		.page-content .row.p .blank  .content{
+			top: 2px;
+		}
 
 		.page-content .row.col2{
 			
@@ -306,7 +337,7 @@
 			float: right;
 		}
 
-		.page-content .row .blank{
+		.page-content .row .blank {
 			position: relative;
 			display: inline-block;
 			height: 20px;
@@ -314,6 +345,7 @@
 			border-bottom: 1px dotted black;
 			margin-right: -2px;
 			padding-left: 3px;
+			font-family: initial;
 			/*background-color: gray;*/
 		}
 
@@ -323,7 +355,7 @@
 			width: 2px;
 			height: 100%;
 			left: 0;
-			bottom: -2px;
+			bottom: -8px;
 		}
 		.page-content .row .blank .right-cap{
 			position: absolute;
@@ -331,7 +363,7 @@
 			width: 2px;
 			height: 100%;
 			right: 0;
-			bottom: -2px;
+			bottom: -8px;
 		}
 
 
@@ -366,9 +398,7 @@
 			margin-top: 10px;
 			border: 1px solid #000;
 			padding: 1px;
-			/*-webkit-box-shadow: 10px -10px 1px -5px rgba(0,0,0,0.94);
-			-moz-box-shadow: 10px -10px 1px -5px rgba(0,0,0,0.94);
-			box-shadow: 10px -10px 1px -5px rgba(0,0,0,0.94);*/
+
 		}
 		
 
@@ -395,10 +425,10 @@
 	</header>
 
 	<div class="page-content" >
-		<div class="row">
+		<div class="row flat">
 		 	<h3>For Brokerage submitting the offer on behalf of the Buyer:</h3>	
 		</div>
-		<div class="row">
+		<div class="row flat">
 			When sent to the Listing Brokerage this form can be used as evidence that you have a written signed offer from a Buyer to the Seller.
 		</div>
 
@@ -918,14 +948,32 @@
 		.page-content.form100{
 			font-size: 11px;
 			margin-top: 10px;
+			height: 790px;
 		}
-
+		.page-content.form100.no-header{
+	
+			height: 880px;
+		}
 		.page-content.form100 .row.title{
 			margin-top: 10px;
 		}
 
 		.page-content.form100 .row.high{
 			height: 36px;
+		}
+
+		footer.form100 {
+			height: 60px;
+		}
+
+		footer.form100 .desc1{
+			width: 480px;
+		    top: 9px;
+		    left: 27px;
+		}
+
+		footer.form100 .page-info{
+			top: 12px;
 		}
 	</style>
 
@@ -934,7 +982,7 @@
 		<div class="tbs-logo"></div>
 
 		<div class="form-number">
-			<div class="number">Form <span class="upsize">801</span></div>
+			<div class="number">Form <span class="upsize">100</span></div>
 			<div class="desc-inline">for use in the Province of Ontario</div>
 		</div>
 
@@ -1223,11 +1271,24 @@
 
 
 		<div class="row">
+
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+
+
 			<div class="initial-box">
 				<div class="text cap">INITIALS OF BUYER(S):</div>
 				<div class="box"></div>
 			</div>
-
+			<div class="indents"></div>
 			<div class="initial-box">
 				<div class="text cap">INITIALS OF SELLER(S):</div>
 				<div class="box"></div>
@@ -1239,13 +1300,12 @@
 
 
 
-	<footer>
+	<footer class="form100">
 		<div class="logo-r"></div>
 		<div class="desc1">
-			The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by The Canadian Real Estate Association CREA) and identify real estate professionals who are members of CREA. Used under license.
+			© 2015, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction of its members and licensees
+			only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter when printing or reproducing the standard pre-set portion.
 		</div>
-
-
 		<div class="page-info">
 			<div><span class="cap">Form 100</span> Revised 2016 <span class="cap">Page 1 of 7</span></div>
 			<div>WEBForms® Jun/2016</div>
@@ -1257,8 +1317,308 @@
 
 
 
+	<!-- form100 page 2 -->
+
+	<div class="page-break"></div>
+
+	<div class="page-content form100 no-header" >
 
 
+
+		<div class="row p">
+			<span class="indents">3.</span>
+			<div class="indent-right-content">
+				<span class="cap">NOTICES:</span> The Seller hereby appoints the Listing Brokerage as agent for the Seller for the purpose of giving and receiving notices pursuant to this Agreement. Where a Brokerage (Buyer’s Brokerage) has entered into a representation agreement with the Buyer, the Buyer hereby appoints the Buyer’s Brokerage as agent for the purpose of giving and receiving notices pursuant to this Agreement. 
+				<span class="cap">Where a Brokerage represents both the Seller and the Buyer (multiple representation), the Brokerage shall not be appointed or authorized to be agent for either the Buyer or the Seller for the purpose of giving and receiving notices.</span>
+				Any notice relating hereto or provided for herein shall be in writing. In addition to any provision contained herein and in any Schedule hereto, this offer, any counter-offer, notice of acceptance thereof or any notice to be given or received pursuant to this Agreement or any Schedule hereto (any of them, “Document”) shall be deemed given and received when delivered personally or hand delivered to the Address for Service provided in the Acknowledgement below, or where a facsimile number or email address is provided herein, when transmitted electronically to that facsimile number or email address, respectively, in which case, the signature(s) of the party (parties) shall be deemed to be original.
+			</div>
+
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row high" style="height: 50px">
+			<div class="indents"></div>
+			<div class="indent-right-content">
+				FAX No.: 
+				<div class="blank" style="width:260px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+					<div class="udesc">(For delivery of Documents to Seller)</div>
+				</div>
+				<div class="separator"></div>
+				FAX No.: 
+				<div class="blank" style="width:260px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+					<div class="udesc">(For delivery of Documents to Buyer)</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row high" style="height: 50px">
+			<div class="indents"></div>
+			<div class="indent-right-content">
+				FAX No.: 
+				<div class="blank" style="width:260px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+					<div class="udesc">(For delivery of Documents to Seller)</div>
+				</div>
+				<div class="separator"></div>
+				FAX No.: 
+				<div class="blank" style="width:260px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+					<div class="udesc">(For delivery of Documents to Buyer)</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row p">
+			<span class="indents">4.</span>
+			<div class="indent-right-content">
+				
+				<span class="cap">CHATTELS INCLUDED:</span>
+				<div class="empty-row"></div>
+				<div class="text-box"></div>
+
+				Unless otherwise stated in this Agreement or any Schedule hereto, Seller agrees to convey all fixtures and chattels included in the Purchase Price free from all liens, encumbrances or claims affecting the said fixtures and chattels.
+			</div>
+
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="row p">
+			<span class="indents">5.</span>
+			<div class="indent-right-content">
+				<span class="cap">FIXTURES EXCLUDED:</span>
+				
+				<div class="text-box no-border"></div>	
+			</div>
+
+		</div>
+
+
+		<div class="row p">
+			<span class="indents">6.</span>
+			<div class="indent-right-content">
+				<span class="cap">RENTAL ITEMS (Including Lease, Lease to Own): </span>
+				The following equipment is rented and not included in the Purchase Price. The Buyer agrees to assume the rental contract(s), if assumable:
+			
+				
+				<div class="text-box no-border">
+					Hot Water Tank (if rental)
+				</div>	
+				The Buyer agrees to co-operate and execute such documentation as may be required to facilitate such assumption.
+			</div>
+
+		</div>
+
+
+		<div class="empty-row"></div><div class="empty-row"></div>
+		<div class="row">
+			<span class="indents">7. </span>
+			<div class="indent-right-content">
+				<span class="cap">HST:</span> If the sale of the property (Real Property as described above) is subject to Harmonized Sales Tax (HST), then such
+
+				<div class="row high">
+				tax shall be
+				<div class="blank" style="width:260px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content">included in</div>
+					<div class="udesc">(included in/in addition to)</div>
+				</div>
+
+				the Purchase Price. If the sale of the property is not subject to HST,
+				</div>
+
+				<div class="row">
+					Seller agrees to certify on or before closing, that the sale of the property is not subject to HST. 
+				</div>
+				
+
+				Any HST on chattels, if applicable, is not included in the Purchase Price.
+
+			</div>
+
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="row">
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="initial-box">
+				<div class="text cap">INITIALS OF BUYER(S):</div>
+				<div class="box"></div>
+			</div>
+			<div class="indents"></div>
+			<div class="initial-box">
+				<div class="text cap">INITIALS OF SELLER(S):</div>
+				<div class="box"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer class="form100">
+		<div class="logo-r"></div>
+		<div class="desc1">
+			© 2015, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction of its members and licensees
+			only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter when printing or reproducing the standard pre-set portion.
+		</div>
+		<div class="page-info">
+			<div><span class="cap">Form 100</span> Revised 2016 <span class="cap">Page 2 of 7</span></div>
+			<div>WEBForms® Jun/2016</div>
+		</div>
+	</footer>
+
+
+
+	<!-- form100 page 3 -->
+
+	<div class="page-break"></div>
+
+	<div class="page-content form100 no-header" >
+		<div class="row">
+			<span class="indents" style="padding-top: 13px">8.</span>
+			<div class="indent-right-content">
+
+				<div class="row ">
+					<span class="cap">TITLE SEARCH:</span> 
+					Buyer shall be allowed until 6:00 p.m. on the
+					<div class="blank" style="width:220px">
+						<div class="left-cap"></div>
+						<div class="right-cap"></div>
+						<div class="content"></div>
+
+					</div>
+					, 20
+					<div class="blank" style="width:50px">
+						<div class="left-cap"></div>
+						<div class="right-cap"></div>
+						<div class="content"></div>
+					</div>
+					, 
+				</div>
+				<div class="row p">
+					(Requisition Date) to examine the title to the property at Buyer’s own expense and until the earlier of: (i) thirty days from the later of the Requisition Date or the date on which the conditions in this Agreement are fulfilled or otherwise waived or; (ii) five days prior to completion, to satisfy Buyer that there are no outstanding work orders or deficiency notices
+				</div>
+
+				<div class="row">
+					affecting the property, and that its present use(
+					<div class="blank" style="width:220px">
+						<div class="left-cap"></div>
+						<div class="right-cap"></div>
+						<div class="content"></div>
+
+					</div>
+					)
+				</div>
+				<div class="row p">
+					may be lawfully continued and that the principal building may be insured against risk of fire. Seller hereby consents to the municipality or other governmental agencies releasing to Buyer details of all outstanding work orders and deficiency notices affecting the property, and Seller agrees to execute and deliver such further authorizations in this regard as Buyer may reasonably require.
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="row p">
+			<span class="indents">9.</span>
+			<div class="indent-right-content">
+				<span class="cap">FUTURE USE: </span>Seller and Buyer agree that there is no representation or warranty of any kind that the future intended use of the property by Buyer is or will be lawful except as may be specifically provided for in this Agreement.
+			</div>
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="row p">
+			<span class="indents">10.</span>
+			<div class="indent-right-content">
+				<span class="cap">TITLE:</span> Provided that the title to the property is good and free from all registered restrictions, charges, liens, and encumbrances except as otherwise specifically provided in this Agreement and save and except for (a) any registered restrictions or covenants that run with the land providing that such are complied with; (b) any registered municipal agreements and registered agreements with publicly regulated utilities providing such have been complied with, or security has been posted to ensure compliance and completion, as evidenced by a letter from the relevant municipality or regulated utility; (c) any minor easements for the supply of domestic utility or telephone services to the property or adjacent properties; and (d) any easements for drainage, storm or sanitary sewers, public utility lines, telephone lines, cable television lines or other services which do not materially affect the use of the property. If within the specified times referred to in paragraph 8 any valid objection to title or to any outstanding work order or deficiency notice, or to the fact the said present use may not lawfully be continued, or that the principal building may not be insured against risk of fire is made in writing to Seller and which Seller is unable or unwilling to remove, remedy or satisfy or obtain insurance save and except against risk of fire (Title Insurance) in favour of the Buyer and any mortgagee, (with all related costs at the expense of the Seller), and which Buyer will not waive, this Agreement notwithstanding any intermediate acts or negotiations in respect of such objections, shall be at an end and all monies paid shall be returned without interest or deduction and Seller, Listing Brokerage and Co-operating Brokerage shall not be liable for any costs or damages. Save as to any valid objection so made by such day and except for any objection going to the root of the title, Buyer shall be conclusively deemed to have accepted Seller's title to the property.
+			</div>
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="row p">
+			<span class="indents">11.</span>
+			<div class="indent-right-content">
+				<span class="cap">CLOSING ARRANGEMENTS:</span> Where each of the Seller and Buyer retain a lawyer to complete the Agreement of Purchase and Sale of the property, and where the transaction will be completed by electronic registration pursuant to Part III of the Land Registration Reform Act, R.S.O. 1990, Chapter L4 and the Electronic Registration Act, S.O. 1991, Chapter 44, and any amendments thereto, the Seller and Buyer acknowledge and agree that the exchange of closing funds, non-registrable documents and other items (the “Requisite Deliveries”) and the release thereof to the Seller and Buyer will (a) not occur at the same time as the registration of the transfer/deed (and any other documents intended to be registered in connection with the completion of this transaction) and (b) be subject to conditions whereby the lawyer(s) receiving any of the Requisite Deliveries will be required to hold same in trust and not release same except in accordance with the terms of a document registration agreement between the said lawyers. The Seller and Buyer irrevocably instruct the said lawyers to be bound by the document registration agreement which is recommended from time to time by the Law Society of Upper Canada. Unless otherwise agreed to by the lawyers, such exchange of the Requisite Deliveries will occur in the applicable Land Titles Office or such other location agreeable to both lawyers.
+			</div>
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="row p">
+			<span class="indents">12.</span>
+			<div class="indent-right-content">
+				<span class="cap">DOCUMENTS AND DISCHARGE:</span> Buyer shall not call for the production of any title deed, abstract, survey or other evidence of title to the property except such as are in the possession or control of Seller. If requested by Buyer, Seller will deliver any sketch or survey of the property within Seller's control to Buyer as soon as possible and prior to the Requisition Date. If a discharge of any Charge/Mortgage held by a corporation incorporated pursuant to the Trust And Loan Companies Act (Canada), Chartered Bank, Trust Company, Credit Union, Caisse Populaire or Insurance Company and which is not to be assumed by Buyer on completion, is not available in registrable form on completion, Buyer agrees to accept Seller's lawyer's personal undertaking to obtain, out of the closing funds, a discharge in registrable form and to register same, or cause same to be registered, on title within a reasonable period of time after completion, provided that on or before completion Seller shall provide to Buyer a mortgage statement prepared by the mortgagee setting out the balance required to obtain the discharge, and, where a real-time electronic cleared funds transfer system is not being used, a direction executed by Seller directing payment to the mortgagee of the amount required to obtain the discharge out of the balance due on completion.
+			</div>
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="row p">
+			<span class="indents">13.</span>
+			<div class="indent-right-content">
+				<span class="cap">INSPECTION:</span> Buyer acknowledges having had the opportunity to inspect the property and understands that upon acceptance of this offer there shall be a binding agreement of purchase and sale between Buyer and Seller. <span class="cap">The Buyer acknowledges having the opportunity to include a requirement for a property inspection report in this Agreement and agrees that except as may be specifically provided for in this Agreement, the Buyer will not be obtaining a property inspection or property inspection report regarding the property.</span>
+			</div>
+		</div>
+
+
+
+
+		<div class="row">
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="initial-box">
+				<div class="text cap">INITIALS OF BUYER(S):</div>
+				<div class="box"></div>
+			</div>
+			<div class="indents"></div>
+			<div class="initial-box">
+				<div class="text cap">INITIALS OF SELLER(S):</div>
+				<div class="box"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer class="form100">
+		<div class="logo-r"></div>
+		<div class="desc1">
+			© 2015, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction of its members and licensees
+			only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter when printing or reproducing the standard pre-set portion.
+		</div>
+		<div class="page-info">
+			<div><span class="cap">Form 100</span> Revised 2016 <span class="cap">Page 3 of 7</span></div>
+			<div>WEBForms® Jun/2016</div>
+		</div>
+	</footer>
 	
 </body>
 </html>
