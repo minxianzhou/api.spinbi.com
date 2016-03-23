@@ -72,6 +72,14 @@
 			.page-break {page-break-after: always;}
 		}
 
+		.center{
+			text-align: center;
+		}
+
+		.small{
+			font-size: 9px;
+		}
+
 		.clearFix {
 			clear: both;
 		}
@@ -91,12 +99,21 @@
 		}
 
 		.empty-row{
-			height: 10px;
+			height: 8px;
+		}
+
+		.box{
+			border: 1px solid #000;
+			min-height: 30px;
+			padding: 3px;
+		}
+		.box.no-top{
+			border-top: 0;
 		}
 
 		.text-box{
 			height: 80px;
-			border: 1px solid #000;
+			border: 2px solid #000;
 			padding: 15px;
 			font-size: 10px;
 			font-family: initial;
@@ -214,7 +231,6 @@
 
 
 
-
 		h1, h2 , h3 { color: black; }
 		h1{
 			font-weight: bold;		
@@ -272,7 +288,7 @@
 			width: 70px;
 			height: 70px;		
 			border: 1px solid #000;	
-			border-radius: 35px;
+			border-radius: 40px;
 
 			-ms-transform: scaleX(1.5); /* IE 9 */
 		    -webkit-transform: scaleX(1.5); /* Chrome, Safari, Opera */
@@ -337,6 +353,37 @@
 			float: right;
 		}
 
+		.page-content .row .seal {
+			position: relative;
+			display: inline-block;
+			width: 30px;
+			background-color: gray;
+			text-align: center;
+		}
+		.page-content .row .seal .logo{
+		    position: absolute;
+		    top: -20px;
+		    left: 6px;
+		    display: inline-block;
+		    background-repeat: no-repeat;
+		    background-size: 18px auto;
+		    width: 18px;
+		    height: 18px;		
+			background-image: url('data:image/png;base64,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');
+			
+		}
+
+		.page-content .row .seal .content{
+			position: absolute;
+			bottom: -8px;
+			left: 35%;
+			font-size: 8px;
+			/*background-color: red;*/
+			width: 95%;
+			left: 1px;
+			text-align: center;
+		}
+
 		.page-content .row .blank {
 			position: relative;
 			display: inline-block;
@@ -345,7 +392,7 @@
 			border-bottom: 1px dotted black;
 			margin-right: -2px;
 			padding-left: 3px;
-			font-family: initial;
+			
 			/*background-color: gray;*/
 		}
 
@@ -369,6 +416,7 @@
 
 
 		.page-content .row .blank .content{
+			font-family: initial;
 		    position: absolute;
 		    top: 9px;
 		    left: 0;
@@ -387,6 +435,10 @@
 			left: 3px;
 			text-align: center;
 
+		}
+
+		.page-content .row .blank .udesc.left{
+			text-align: left;
 		}
 
 		.page-content .row .check-box{
@@ -995,7 +1047,7 @@
 
 		<div class="row med">
 			This Agreement of Purchase and Sale dated this
-			<div class="blank" style="width:160px">
+			<div class="blank" style="width:200px">
 				<div class="left-cap"></div>
 				<div class="right-cap"></div>
 				<div class="content"></div>
@@ -1827,6 +1879,440 @@
 
 
 
+	<!-- form100 page 5 -->
+
+	<div class="page-break"></div>
+
+	<div class="page-content form100 no-header" >
+		
+		<div class="empty-row"></div>
+		<div class="row p">
+			<span class="indents">28.</span>
+			<div class="indent-right-content">
+				<span class="cap">SUCCESSORS AND ASSIGNS: </span>The heirs, executors, administrators, successors and assigns of the undersigned are bound by the terms herein.
+			</div>
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row">
+			SIGNED, SEALED AND DELIVERED in the presence of:
+			<div class="indents"></div>
+		
+			IN WITNESS whereof I have hereunto set my hand and seal:
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row high">	
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Witness)</div>
+			</div>
+			<div class="indents"></div>
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Buyer)</div>
+			</div>
+			<div class="seal">
+				<div class="logo"></div>
+		
+				<div class="content">(Seal)</div>
+			</div>
+			DATE
+			<div class="blank" style="width:100px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+		</div>
+
+
+		<div class="row high">	
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Witness)</div>
+			</div>
+			<div class="indents"></div>
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Buyer)</div>
+			</div>
+			<div class="seal">
+				<div class="logo"></div>
+		
+				<div class="content">(Seal)</div>
+			</div>
+			DATE
+			<div class="blank" style="width:100px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+		</div>
+
+
+		<div class="row p">	
+			I, the Undersigned Seller, agree to the above offer. I hereby irrevocably instruct my lawyer to pay directly to the brokerage(s) with whom I have agreed to pay commission, the unpaid balance of the commission together with applicable Harmonized Sales Tax (and any other taxes as may hereafter be applicable), from the proceeds of the sale prior to any payment to the undersigned on completion, as advised by the brokerage(s) to my lawyer.
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row">
+			SIGNED, SEALED AND DELIVERED in the presence of:
+			<div class="indents"></div>
+		
+			IN WITNESS whereof I have hereunto set my hand and seal:
+		</div>
+
+		<div class="row high">	
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Witness)</div>
+			</div>
+			<div class="indents"></div>
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Seller)</div>
+			</div>
+			<div class="seal">
+				<div class="logo"></div>
+		
+				<div class="content">(Seal)</div>
+			</div>
+			DATE
+			<div class="blank" style="width:100px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+		</div>
+
+
+		<div class="row high">	
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Witness)</div>
+			</div>
+			<div class="indents"></div>
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Seller)</div>
+			</div>
+			<div class="seal">
+				<div class="logo"></div>
+		
+				<div class="content">(Seal)</div>
+			</div>
+			DATE
+			<div class="blank" style="width:100px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+		</div>
+
+
+		<div class="row p">	
+			<span class="cap">SPOUSAL CONSENT:</span> The Undersigned Spouse of the Seller hereby consents to the disposition evidenced herein pursuant to the provisions of the Family Law Act, R.S.O.1990, and hereby agrees with the Buyer that he/she will execute all necessary or incidental documents to give full force and effect to the sale evidenced herein.
+		</div>
+
+
+		<div class="row high">	
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Witness)</div>
+			</div>
+			<div class="indents"></div>
+			<div class="blank" style="width:240px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc left">(Spouse)</div>
+			</div>
+			<div class="seal">
+				<div class="logo"></div>
+		
+				<div class="content">(Seal)</div>
+			</div>
+			DATE
+			<div class="blank" style="width:100px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row">
+			<span class="cap">CONFIRMATION OF ACCEPTANCE: </span>
+			<div class="indents"></div>
+			
+			Notwithstanding anything contained herein to the contrary, I confirm this Agreement with all
+		</div>
+		<div class="row flat">
+			changes both typed and written was finally accepted by all parties at
+			<div class="blank" style="width:70px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+			a.m./p.m
+			<div class="indents"></div>
+			this
+			<div class="blank" style="width:140px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+			day
+		</div>
+		<div class="row">
+			of
+			<div class="blank" style="width:310px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+			, 20
+			<div class="blank" style="width:50px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="blank" style="width:220px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc">(Signature of Seller or Buyer)</div>
+			</div>
+
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row center cap">
+			INFORMATION ON BROKERAGE(S)
+		</div>
+
+		<div class="box">
+			<div class="row">
+				Listing Brokerage
+				<div class="blank" style="width:360px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+				</div>
+				Tel.No.
+				<div class="blank" style="width:180px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+				</div>
+			</div>
+			<div class="row high">
+				<div class="blank" style="width:660px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+					<div class="udesc">(Salesperson / Broker Name)</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="box no-top">
+			<div class="row">
+				Co-op/Buyer Brokerage
+				<div class="blank" style="width:300px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+				</div>
+				Tel.No.
+				<div class="blank" style="width:180px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+				</div>
+			</div>
+			<div class="row high">
+				<div class="blank" style="width:660px">
+					<div class="left-cap"></div>
+					<div class="right-cap"></div>
+					<div class="content"></div>
+					<div class="udesc">(Salesperson / Broker Name)</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="row center cap">
+			ACKNOWLEDGEMENT
+		</div>
+
+
+		<div class="row">
+			<table class="small">
+				<tr>
+					<td style="border-right: 1px solid #000; width: 49%">
+						<div class="row p">
+							I acknowledge receipt of my signed copy of this accepted Agreement of
+							Purchase and Sale and I authorize the Brokerage to forward a copy to my lawyer.	
+						</div>
+
+						<div class="row med">
+							<div class="blank" style="width:230px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc left">(Seller)</div>
+							</div>	
+							DATE
+							<div class="blank" style="width:60px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row med">
+							<div class="blank" style="width:230px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc left">(Seller)</div>
+							</div>	
+							DATE
+							<div class="blank" style="width:60px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Address for Service
+							<div class="blank" style="width:240px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row flat">
+							<div class="blank" style="width:170px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+							Tel.No.
+							<div class="blank" style="width:120px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Seller's Lawyer
+							<div class="blank" style="width:260px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Address
+							<div class="blank" style="width:290px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Email
+							<div class="blank" style="width:300px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+						
+
+						<div class="row">
+							
+							<div class="blank" style="width:155px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc">Tel.No.</div>
+							</div>	
+
+							<div class="blank" style="width:155px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc ">FAX No.</div>
+							</div>	
+
+						</div>
+
+
+
+					</td>
+					<td>
+						
+
+					<div class="row">
+							
+	
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+	<footer class="form100">
+		<div class="logo-r"></div>
+		<div class="desc1">
+			© 2015, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction of its members and licensees
+			only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter when printing or reproducing the standard pre-set portion.
+		</div>
+		<div class="page-info">
+			<div><span class="cap">Form 100</span> Revised 2016 <span class="cap">Page 5 of 7</span></div>
+			<div>WEBForms® Jun/2016</div>
+		</div>
+	</footer>
 
 	
 </body>
