@@ -99,9 +99,9 @@ exports.generateOfferForms = function(req,res){
 				format: 'Letter',
 				"orientation": "portrait",
 				"border": {
-				    "top": "7mm",            // default is 0, units: mm, cm, in, px 
+				    "top": "6mm",            // default is 0, units: mm, cm, in, px 
 				    "right": "10mm",
-				    "bottom": "3mm",
+				    "bottom": "0mm",
 				    "left": "10mm"
 				},
 			};
