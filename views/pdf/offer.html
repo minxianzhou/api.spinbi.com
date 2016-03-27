@@ -75,6 +75,14 @@
 		.center{
 			text-align: center;
 		}
+		.right{
+			text-align: right;
+		}
+		.left{
+			text-align: left;
+		}
+
+
 
 		.small{
 			font-size: 9px;
@@ -93,6 +101,13 @@
 			width: 20px;
 			vertical-align: top;
 		}
+
+		.indents-med{
+			display: inline-block;
+			width: 28px;
+			vertical-align: top;
+		}
+
 		.indent-right-content{
 			display: inline-block;
 			width: 96%
@@ -276,7 +291,6 @@
 
 		}
 		.initial-box .text{
-			/*background-color: gray;*/
 			display: inline-block;
 			height: 100%;
 			vertical-align: middle;
@@ -298,15 +312,38 @@
 		    -webkit-transform: scaleY(0.4); /* Chrome, Safari, Opera */
 			transform:scaleY(0.4);
 		}
+		.initial-box.vertical{
+			height: 50px;
+			text-align: center;
+			vertical-align: top;
+		}
+		.initial-box.vertical .text{
+			display: block;
+			text-align: center;
+			height: 13px;
+			font-size: 9px
+		}
+		.initial-box.vertical .box{
+
+			display: inline-block;
+			margin: -20px 0 -10px 0px;
+
+		}
+
 
 		.page-content{
 			height: 790px;
 		}
 
+
+
 		.page-content p{
 			line-height: 12px;
 			margin: 0;
 		}
+
+
+
 		.page-content p.flat{
 			line-height: 11px;
 		}
@@ -316,6 +353,9 @@
 			min-height: 15px;
 		}
 
+		.page-content .row.close-top{
+			margin-top: -2px;
+		}
 		.page-content .row.flat{
 			min-height: 6px;
 		}
@@ -389,6 +429,23 @@
 		}
 
 
+		.page-content .row ul{
+			display: inline-block;
+		}
+		.page-content .row ul li{
+			line-height: 12px;
+		}
+		/*.page-content .row ul li:before{
+			content: '\2022';
+		}*/
+ 
+		.page-content .row ul li span{
+			font-size: 6px;
+			line-height: 6px;
+		}
+
+
+
 		.page-content .row .blank {
 			position: relative;
 			display: inline-block;
@@ -425,6 +482,13 @@
 			bottom: -8px;
 		}
 
+		.page-content .row .blank.left .content{
+			text-align: left;
+			padding-left: 3px;
+		}
+		.page-content .row .blank.left .udesc{
+			text-align: left;
+		}
 
 
 		.page-content .row .blank .content{
@@ -457,12 +521,17 @@
 			display: inline-block;
 			width: 7px;
 			height: 7px;
-			background-color: #D4C7C7;
+			/*background-color: #D4C7C7;*/
+			background-color: #fff;
 			margin-left: 20px;
 			margin-top: 10px;
 			border: 1px solid #000;
 			padding: 1px;
 
+		}
+
+		.page-content .row .check-box.flat{
+			margin: -2px 0 0 0;
 		}
 		
 
@@ -3001,11 +3070,6 @@
 				<div class="box"></div>
 			</div>
 		</div>
-
-
-
-
-
 	</div>
 
 	<footer class="form100">
@@ -3021,7 +3085,728 @@
 	</footer>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Confirmation of Co-operation and Representation, form 320  -->
+
+	<div class="page-break"></div>
+
+
+
+	<header class="form100">		
+		<div class="logo"></div>
+		<div class="tbs-logo"></div>
+
+		<div class="form-number">
+			<div class="number">Form <span class="upsize">320</span></div>
+			<div class="desc-inline">for use in the Province of Ontario</div>
+		</div>
+
+		<div class="form-heading"  style="top: 1px;left: 198px;">
+			<h1>Confirmation of Co-operation</h1>
+			<h1>and Representation</h1>
+		</div>
+	</header>
+
+	<div class="page-content form100" style="height: 820px" >
+
+		<div class="empty-row"></div>
 	
+
+		<div class="row med">
+			<span class="cap">BUYER,</span>
+			<div class="blank" style="width:630px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<!-- <div class="udesc">(by fax, by email or in person)</div> -->
+			</div>
+		</div>
+
+		<div class="row med">
+			<span class="cap">SELLER,</span>
+			<div class="blank" style="width:630px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+		</div>
+
+		<div class="row high">
+			For the transaction on the property known as
+			<div class="blank" style="width:450px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+			</div>
+		</div>
+	
+
+
+
+		<p class="small">
+			For the purposes of this Confirmation of Co-operation and Representation, “Seller” includes a vendor, a landlord, or a prospective, seller, vendor or landlord and “Buyer” includes a purchaser, a tenant, or a prospective, buyer, purchaser or tenant, “sale“ includes a lease, and “Agreement of Purchase and Sale” includes an Agreement to Lease.
+		</p>
+
+	
+		<div class="empty-row"></div>
+		<p class=" cap small">
+			The following information is confirmed by the undersigned salesperson/broker representatives of the Brokerage(s). If a Co-operating Brokerage is involved in the transaction, the brokerages agree to co-operate, in consideration of, and on the terms and conditions as set out below.
+		</p>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<p class=" cap small">
+			DECLARATION OF INSURANCE: The undersigned salesperson/broker representative(s) of the Brokerage(s) hereby declare that he/she is insured as required by the Real Estate and Business Brokers Act, 2002 (REBBA 2002) and Regulations.
+		</p>
+
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row cap">
+			<div class="indents-med">1.</div>
+			LISTING BROKERAGE
+		</div>
+
+		<div class="row med small">
+			<div class="indents-med"></div>
+			<div class="indents-med cap">a)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			The Listing Brokerage represents the interests of the Seller in this transaction. It is further understood and agreed that:
+		</div>
+
+
+		<div class="row  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med">1)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			The Listing Brokerage is not representing or providing Customer Service to the Buyer.
+		</div>
+		<div class="row  close-top small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			(If the Buyer is working with a Co-operating Brokerage, Section 3 is to be completed by Co-operating Brokerage)
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="row  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med">2)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			The Listing Brokerage is providing Customer Service to the Buyer.
+		</div>
+
+		<div class="row small">
+			<div class="indents-med"></div>
+			<div class="indents-med cap">b)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			<span class="cap">MULTIPLE REPRESENTATION: </span>The Listing Brokerage has entered into a Buyer Representation Agreement with the Buyer and represents
+		</div>
+		<div class="row  close-top  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			the interests of the Seller and the Buyer, with their consent, for this transaction. The Listing Brokerage must be impartial and equally protect
+		</div>
+		<div class="row  close-top  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			the interests of the Seller and the Buyer in this transaction. The Listing Brokerage has a duty of full disclosure to both the Seller and the Buyer,
+		</div>
+		<div class="row  close-top  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			including a requirement to disclose all factual information about the property known to the Listing Brokerage. However, the Listing Brokerage
+		</div>
+		<div class="row  close-top  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			hall not disclose:
+		</div>
+
+
+		<div class="row small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents"></div>
+			<ul style="width:500px;margin-top: 0;" >
+				<li>That the Seller may or will accept less than the listed price, unless otherwise instructed in writing by the Seller;</li>
+				<li>That the Buyer may or will pay more than the offered price, unless otherwise instructed in writing by the Buyer;</li>
+				<li> The motivation of or personal information about the Seller or Buyer, unless otherwise instructed in writing by the party to which the information applies, or unless failure to disclose would constitute fraudulent, unlawful or unethical practice;</li>
+				<li>The price the Buyer should offer or the price the Seller should accept;</li>
+				<li>And; the Listing Brokerage shall not disclose to the Buyer the terms of any other offer.</li>
+			</ul>
+		</div>
+
+		<div class="row  close-top  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			However, it is understood that factual market information about comparable properties and information known to the Listing Brokerage
+		</div>
+		<div class="row  close-top  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			concerning potential uses for the property will be disclosed to both Seller and Buyer to assist them to come to their own conclusions.
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row small">
+			Additional comments and/or disclosures by Listing Brokerage: (e.g. The Listing Brokerage represents more than one Buyer offering on this property.)
+		</div>
+
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row cap">
+			<div class="indents-med">2.</div>
+			PROPERTY SOLD BY BUYER BROKERAGE – PROPERTY NOT LISTED
+		</div>
+
+
+		<div class="row high small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med" style="margin: 13px 0px 0px 0px;">
+				<div class="check-box flat">&#10004;</div>
+			</div>
+			The Brokerage
+			<div class="blank" style="width:80px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc">(does/does not)</div>
+			</div>
+			represent the Buyer and the property is not listed with any real estate brokerage. The Brokerage will be paid
+		</div>
+
+		<div class="row  small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents"><div class="check-box flat">&#10004;</div></div>
+			by the Seller in accordance with a Seller Customer Service Agreement
+		</div>
+		<div class="row small">
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"></div>
+			<div class="indents-med"> or:</div>
+			<div class="indents"><div class="check-box flat">&#10004;</div></div>
+			by the Buyer directly
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="row small">
+			Additional comments and/or disclosures by Buyer Brokerage: (e.g. The Buyer Brokerage represents more than one Buyer offering on this property.)
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+
+
+
+		<div class="row cap center">
+			INITIALS OF BUYER(S)/SELLER(S)/BROKERAGE REPRESENTATIVE(S) (Where applicable)
+		</div>
+
+
+
+
+
+		<div class="row">
+			<div class="indents-med"></div>
+			<div class="indents"></div>
+			<div class="initial-box vertical">
+				<div class="box"></div>
+				<div class="text cap">BUYER</div>
+			</div>
+
+			<div class="indents"></div>
+			<div class="indents"></div>
+			<div class="initial-box vertical">
+				<div class="box"></div>
+				<div class="text cap">CO-OPERATING/BUYER BROKERAGE</div>
+			</div>
+
+
+			<div class="indents-med"></div>
+			<div class="initial-box vertical">
+				<div class="box"></div>
+				<div class="text cap">SELLER</div>
+			</div>
+
+			<div class="indents-med"></div>
+			<div class="indents"></div>
+			<div class="initial-box vertical">
+				<div class="box"></div>
+				<div class="text cap">LISTING BROKERAGE</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+	<footer class="form100">
+		<div class="logo-r"></div>
+		<div class="desc1">
+			© 2016, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction of its members and licensees
+			only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter when printing or reproducing the standard pre-set portion.
+		</div>
+		<div class="page-info">
+			<div><span class="cap">Form 320</span> Revised 2016 <span class="cap">Page 1 of 2</span></div>
+			<div>WEBForms® Jun/2016</div>
+		</div>
+	</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Confirmation of Co-operation and Representation, form 320  page 2 -->
+
+	<div class="page-break"></div>
+
+
+	<div class="page-content form100 no-header" >
+
+		<div class="empty-row"></div>
+	
+
+		<div class="row med cap">
+			<div class="indents-med">3.</div>
+			Co-operating Brokerage completes Section 3 and Listing Brokerage completes Section 1.
+		</div>
+	
+		<div class="row cap">
+			<div class="indents-med"></div>
+			CO-OPERATING BROKERAGE- REPRESENTATION:
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="row med small">
+			<div class="indents-med"></div>
+			<div class="indents-med cap">a)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			The Co-operating Brokerage represents the interests of the Buyer in this transaction.
+		</div>
+		<div class="row med small">
+			<div class="indents-med"></div>
+			<div class="indents-med cap">b)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			The Co-operating Brokerage is providing Customer Service to the Buyer in this transaction.
+		</div>
+		<div class="row med small">
+			<div class="indents-med"></div>
+			<div class="indents-med cap">c)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			The Co-operating Brokerage is not representing the Buyer and has not entered into an agreement to provide customer service(s) to the Buyer.
+		</div>
+
+
+		<div class="row cap">
+			<div class="indents-med"></div>
+			CO-OPERATING BROKERAGE- COMMISSION:
+		</div>
+		<div class="empty-row"></div>
+		<div class="row small">
+			<div class="indents-med"></div>
+			<div class="indents-med cap">a)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			The Listing Brokerage will pay the Co-operating Brokerage the commission as indicated in the MLS® information for the property
+		</div>
+		<div class="empty-row"></div>
+		<div class="row high small" style="margin-top: -18px">
+			<div class="indents-med"></div>
+			<div class="indents-med cap"></div>
+			<div class="indents-med"></div>
+			<div class="blank" style="width:280px">
+				<div class="left-cap"></div>
+				<div class="right-cap"></div>
+				<div class="content"></div>
+				<div class="udesc">(Commission As Indicated In MLS® Information)</div>
+			</div>
+			to be paid from the amount paid by the Seller to the Listing Brokerage.
+		</div>
+		<div class="empty-row"></div>
+		<div class="row med small">
+			<div class="indents-med"></div>
+			<div class="indents-med cap">b)</div>
+			<div class="indents-med"><div class="check-box flat">&#10004;</div></div>
+			The Co-operating Brokerage will be paid as follows:
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+
+
+		<div class="row small">
+			Additional comments and/or disclosures by Co-operating Brokerage: (e.g., The Co-operating Brokerage represents more than one Buyer offering on this property.)
+		</div>
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+
+
+		<div class="row small">
+			Commission will be payable as described above, plus applicable taxes.
+		</div>
+
+
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<p class="small">
+			COMMISSION TRUST AGREEMENT: If the above Co-operating Brokerage is receiving payment of commission from the Listing Brokerage, then the agreement between Listing Brokerage and Co-operating Brokerage further includes a Commission Trust Agreement, the consideration for which is the Co-operating Brokerage procuring an offer for a trade of the property, acceptable to the Seller. This Commission Trust Agreement shall be subject to and governed by the MLS® rules and regulations pertaining to commission trusts of the Listing Brokerage’s local real estate board, if the local board’s MLS® rules and regulations so provide. Otherwise, the provisions of the OREA recommended MLS® rules and regulations shall apply to this Commission Trust Agreement. For the purpose of this Commission Trust Agreement, the Commission Trust Amount shall be the amount noted in Section 3 above. The Listing Brokerage hereby declares that all monies received in connection with the trade shall constitute a Commission Trust and shall be held, in trust, for the Co-operating Brokerage under the terms of the applicable MLS® rules and regulations.
+		</p>
+
+		
+		<div class="empty-row"></div>
+		<div class="empty-row"></div>
+		<div class="row cap center">
+			SIGNED BY THE BROKER/SALESPERSON REPRESENTATIVE(S) OF THE BROKERAGE(S) (Where applicable)
+		</div>
+
+
+		<div class="row flatBlank">
+			<table class="small">
+				<tr>
+					<td style="border-right: 1px solid #000; width: 49%">
+
+						<div class="row med">
+							<div class="blank left" style="width:320px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content">RE/MAX CROSSROADS REALTY INC.</div>
+								<div class="udesc left">(Name of Co-operating/Buyer Brokerage)</div>
+							</div>	
+						</div>
+
+						<div class="row med">
+							<div class="blank left" style="width:320px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content">
+									1055 MCNICOLL AVENUE
+									<div class="indents-med"></div>
+									<div class="indents-med"></div>
+									TORONTO
+								</div>
+						
+							</div>	
+						</div>
+
+
+
+
+
+						<div class="row">
+							Address for Service
+							<div class="blank" style="width:240px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row flat">
+							<div class="blank" style="width:175px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+							Tel.No.
+							<div class="blank" style="width:105px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content">419-233-3432</div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Seller's Lawyer
+							<div class="blank" style="width:260px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Address
+							<div class="blank" style="width:285px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Email
+							<div class="blank" style="width:295px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+						
+
+						<div class="row">
+							
+							<div class="blank" style="width:155px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc">Tel.No.</div>
+							</div>	
+
+							<div class="blank" style="width:155px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc ">FAX No.</div>
+							</div>	
+
+						</div>
+
+
+
+					</td>
+					<td>
+						
+
+						<p class="flat">
+							I acknowledge receipt of my signed copy of this accepted Agreement of
+							Purchase and Sale and I authorize the Brokerage to forward a copy to my lawyer.	
+						</p>
+
+						<div class="row med">
+							<div class="blank" style="width:220px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content">fdsadf</div>
+								<div class="udesc left">(Buyer)</div>
+							</div>	
+							DATE
+							<div class="blank" style="width:70px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content">sssfds</div>
+							</div>	
+						</div>
+
+						<div class="row med">
+							<div class="blank" style="width:220px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc left">(Buyer)</div>
+							</div>	
+							DATE
+							<div class="blank" style="width:70px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content">fdsafdsaf</div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Address for Service
+							<div class="blank" style="width:240px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row flat">
+							<div class="blank" style="width:175px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+							Tel.No.
+							<div class="blank" style="width:105px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content">419-233-3432</div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Buyer's Lawyer
+							<div class="blank" style="width:260px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Address
+							<div class="blank" style="width:285px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+
+						<div class="row">
+							Email
+							<div class="blank" style="width:295px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+							</div>	
+						</div>
+						
+
+						<div class="row">
+							
+							<div class="blank" style="width:155px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc">Tel.No.</div>
+							</div>	
+
+							<div class="blank" style="width:155px">
+								<div class="left-cap"></div>
+								<div class="right-cap"></div>
+								<div class="content"></div>
+								<div class="udesc ">FAX No.</div>
+							</div>	
+
+						</div>
+							
+	
+					</td>
+				</tr>
+			</table>
+		</div>
+
+
+	</div>
+
+	<footer class="form100">
+		<div class="logo-r"></div>
+		<div class="desc1">
+			© 2016, Ontario Real Estate Association (“OREA”). All rights reserved. This form was developed by OREA for the use and reproduction of its members and licensees
+			only. Any other use or reproduction is prohibited except with prior written consent of OREA. Do not alter when printing or reproducing the standard pre-set portion.
+		</div>
+		<div class="page-info">
+			<div><span class="cap">Form 320</span> Revised 2016 <span class="cap">Page 2 of 2</span></div>
+			<div>WEBForms® Jun/2016</div>
+		</div>
+	</footer>
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
