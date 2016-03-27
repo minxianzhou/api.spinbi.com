@@ -1,0 +1,201 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'spawn' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.28
+4 warn package.json pause@0.0.1 No repository field.
+5 warn package.json string_decoder@0.10.31 string_decoder is also the name of a node core module.
+6 warn package.json sylvester@0.0.21 No repository field.
+7 warn package.json uid2@0.0.3 No repository field.
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'spawn', null ]
+10 verbose cache add name=undefined spec="spawn" args=["spawn",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'spawn',
+11 verbose parsed url   path: 'spawn',
+11 verbose parsed url   href: 'spawn' }
+12 silly lockFile 6227120a-spawn spawn
+13 verbose lock spawn /var/root/.npm/6227120a-spawn.lock
+14 silly lockFile 6227120a-spawn spawn
+15 silly lockFile 6227120a-spawn spawn
+16 verbose addNamed [ 'spawn', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile 462ff5f4-spawn spawn@
+19 verbose lock spawn@ /var/root/.npm/462ff5f4-spawn.lock
+20 silly addNameRange { name: 'spawn', range: '*', hasData: false }
+21 verbose url raw spawn
+22 verbose url resolving [ 'https://registry.npmjs.org/', './spawn' ]
+23 verbose url resolved https://registry.npmjs.org/spawn
+24 info trying registry request attempt 1 at 23:35:03
+25 verbose etag "AMOGBVCSV0TXJVJ7XLNUGOYEC"
+26 http GET https://registry.npmjs.org/spawn
+27 http 304 https://registry.npmjs.org/spawn
+28 silly registry.get cb [ 304,
+28 silly registry.get   { date: 'Sun, 27 Mar 2016 03:35:04 GMT',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     'cache-control': 'max-age=300',
+28 silly registry.get     etag: '"AMOGBVCSV0TXJVJ7XLNUGOYEC"',
+28 silly registry.get     age: '0',
+28 silly registry.get     connection: 'keep-alive',
+28 silly registry.get     'x-served-by': 'cache-dfw1826-DFW',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1459049704.138929,VS0,VE218',
+28 silly registry.get     vary: 'Accept' } ]
+29 verbose etag spawn from cache
+30 silly addNameRange number 2 { name: 'spawn', range: '*', hasData: true }
+31 silly addNameRange versions [ 'spawn', [ '0.0.1' ] ]
+32 verbose addNamed [ 'spawn', '0.0.1' ]
+33 verbose addNamed [ '0.0.1', '0.0.1' ]
+34 silly lockFile fe240585-spawn-0-0-1 spawn@0.0.1
+35 verbose lock spawn@0.0.1 /var/root/.npm/fe240585-spawn-0-0-1.lock
+36 silly lockFile fe240585-spawn-0-0-1 spawn@0.0.1
+37 silly lockFile fe240585-spawn-0-0-1 spawn@0.0.1
+38 silly lockFile 462ff5f4-spawn spawn@
+39 silly lockFile 462ff5f4-spawn spawn@
+40 silly resolved [ { name: 'spawn',
+40 silly resolved     description: 'Seamless multi-process worker management',
+40 silly resolved     version: '0.0.1',
+40 silly resolved     author:
+40 silly resolved      { name: 'Mirko Kiefer',
+40 silly resolved        email: 'mail@mirkokiefer.com',
+40 silly resolved        url: 'http://www.mirkokiefer.com' },
+40 silly resolved     main: 'spawn',
+40 silly resolved     directories: { test: './test' },
+40 silly resolved     dependencies:
+40 silly resolved      { webworker: 'https://github.com/mirkok/node-webworker/tarball/master',
+40 silly resolved        underscore: 'https://github.com/mirkok/underscore/tarball/master' },
+40 silly resolved     devDependencies: { vows: '*' },
+40 silly resolved     engines: { node: '*' },
+40 silly resolved     readme: '# spawn.js\n\nspawn.js aims to make multi-process programming with Node.js a joy.\n\nThe library allows you to spawn any function in a new Node.js instance.\n\nYou get back an [EventEmitter](http://nodejs.org/docs/v0.4.7/api/events.html#events.EventEmitter) that you can use to communicate with the spawned worker.\n\n## Example\n\n``` javascript\nvar spawn = require(\'spawn\');\n\nvar helloWorldFunction = function(events) {\n  events.on(\'talk_to_me\', function() {\n    events.emit(\'worker_message\', \'hello_world\');\n  });\n};\n\n// spawn helloWorldFunction in a new process:\nvar helloWorldWorker = spawn(helloWorldFunction);\n\n// listen on the helloWorldWorker\'s EventEmitter:\nhelloWorldWorker.on(\'worker_message\', function(message) {\n  console.log(message);\n});\n\n// emit an event that gets propagated to the worker:\nhelloWorldWorker.emit(\'talk_to_me\');\n```\n\nWhen spawning a function, spawn.js essentially returns you an [EventEmitter](http://nodejs.org/docs/v0.4.7/api/events.html#events.EventEmitter) that gets synced between the master and child process.\n\nSo in the example above \'helloWorldWorker\' and the \'events\' parameter in \'helloWorldFunction\' are EventEmitters synced to each other.\n\n## Documentation\nYou can access the module by doing:\n\n``` javascript\nvar spawn = require(\'spawn\');\n```\n\n### spawn:\n``` javascript\nvar anEventEmitter = spawn(aWorkerFunction);\n```\nSpawns a new process running aWorkerFunction by passing it an EventEmitter. A synced version of the same EventEmitter gets returned in the spawning master process.\nAll emits on the returned EventEmitter get copied to the workerFunction\'s emitter. \n\n``` javascript\nvar anEventEmitter = spawn(aWorkerModulePath);\n```\nSpawns a new process by running the function defined in aWorkerModulePath.\nWhen using this function to spawn a worker you avoid the network and serialization overhead of passing the worker function to the new process. But its of course only half as sexy as having it all defined in one source file...\n\n### worker function:\n``` javascript\nfunction(anEventEmitter) { }\n```\nAs the function will get executed within a new Node instance you should not reference anything outside the function\'s lexical scope.\n\n### worker module:\nIf you pass a path to spawn you need to have a module defined like this:\n\n``` javascript\nmodule.exports = function(anEventEmitter) { }\n```\n\n### EventEmitter:\nThe event emitters passed to the worker function and returned by spawn, behaves as described in the [Node.js documentation](http://nodejs.org/docs/v0.4.7/api/events.html#events.EventEmitter). As all events are copied between the master\'s and child\'s version of the emitter you may only pass objects as event parameters that can be serialized to JSON.\n\nThere are only two reserved events on the synced EventEmitters:\n#### Event: \'terminate\'\n``` javascript\nfunction() { }\n```\nEmitting this event will terminate the worker.\n\n#### Event: \'terminated\'\n``` javascript\nfunction() { }\n```\nThis event will be emitted when the worker has been terminated.\n\n## Dependencies\n\nInstead of rolling our own custom protocol we rely on the WebWorker API for any communication with spawned workers.\n\nMany thanks to Peter Griess\' excellent [node-webworker](https://github.com/mirkok/node-webworker) module implementing the WebWorker API - we use a slightly modified version of his library.',
+40 silly resolved     readmeFilename: 'readme.md',
+40 silly resolved     _id: 'spawn@0.0.1',
+40 silly resolved     _shasum: '6e9daba98c4722c04f9dce1945b0e7ae671dfe8e',
+40 silly resolved     _from: 'spawn@',
+40 silly resolved     _resolved: 'https://registry.npmjs.org/spawn/-/spawn-0.0.1.tgz' } ]
+41 info install spawn@0.0.1 into /sites/api.spinbi.com
+42 info installOne spawn@0.0.1
+43 info /sites/api.spinbi.com/node_modules/spawn unbuild
+44 verbose tar unpack /var/root/.npm/spawn/0.0.1/package.tgz
+45 silly lockFile 5bd0a300-pi-spinbi-com-node-modules-spawn tar:///sites/api.spinbi.com/node_modules/spawn
+46 verbose lock tar:///sites/api.spinbi.com/node_modules/spawn /var/root/.npm/5bd0a300-pi-spinbi-com-node-modules-spawn.lock
+47 silly lockFile 744052cd-root-npm-spawn-0-0-1-package-tgz tar:///var/root/.npm/spawn/0.0.1/package.tgz
+48 verbose lock tar:///var/root/.npm/spawn/0.0.1/package.tgz /var/root/.npm/744052cd-root-npm-spawn-0-0-1-package-tgz.lock
+49 silly gunzTarPerm modes [ '755', '644' ]
+50 silly gunzTarPerm extractEntry .gitignore
+51 silly gunzTarPerm extractEntry package.json
+52 silly gunzTarPerm extractEntry readme.md
+53 silly gunzTarPerm extractEntry spawn.js
+54 silly gunzTarPerm extractEntry utils.js
+55 silly gunzTarPerm extractEntry worker_wrapper.js
+56 silly gunzTarPerm extractEntry test/spawn-test.js
+57 silly gunzTarPerm extractEntry test/worker-file.js
+58 silly lockFile 5bd0a300-pi-spinbi-com-node-modules-spawn tar:///sites/api.spinbi.com/node_modules/spawn
+59 silly lockFile 5bd0a300-pi-spinbi-com-node-modules-spawn tar:///sites/api.spinbi.com/node_modules/spawn
+60 silly lockFile 744052cd-root-npm-spawn-0-0-1-package-tgz tar:///var/root/.npm/spawn/0.0.1/package.tgz
+61 silly lockFile 744052cd-root-npm-spawn-0-0-1-package-tgz tar:///var/root/.npm/spawn/0.0.1/package.tgz
+62 info preinstall spawn@0.0.1
+63 verbose readDependencies using package.json deps
+64 verbose readDependencies using package.json deps
+65 verbose cache add [ 'webworker@https://github.com/mirkok/node-webworker/tarball/master',
+65 verbose cache add   null ]
+66 verbose cache add name=undefined spec="webworker@https://github.com/mirkok/node-webworker/tarball/master" args=["webworker@https://github.com/mirkok/node-webworker/tarball/master",null]
+67 verbose parsed url { protocol: null,
+67 verbose parsed url   slashes: null,
+67 verbose parsed url   auth: null,
+67 verbose parsed url   host: null,
+67 verbose parsed url   port: null,
+67 verbose parsed url   hostname: null,
+67 verbose parsed url   hash: null,
+67 verbose parsed url   search: null,
+67 verbose parsed url   query: null,
+67 verbose parsed url   pathname: 'webworker@https://github.com/mirkok/node-webworker/tarball/master',
+67 verbose parsed url   path: 'webworker@https://github.com/mirkok/node-webworker/tarball/master',
+67 verbose parsed url   href: 'webworker@https://github.com/mirkok/node-webworker/tarball/master' }
+68 verbose cache add [ 'underscore@https://github.com/mirkok/underscore/tarball/master',
+68 verbose cache add   null ]
+69 verbose cache add name=undefined spec="underscore@https://github.com/mirkok/underscore/tarball/master" args=["underscore@https://github.com/mirkok/underscore/tarball/master",null]
+70 verbose parsed url { protocol: null,
+70 verbose parsed url   slashes: null,
+70 verbose parsed url   auth: null,
+70 verbose parsed url   host: null,
+70 verbose parsed url   port: null,
+70 verbose parsed url   hostname: null,
+70 verbose parsed url   hash: null,
+70 verbose parsed url   search: null,
+70 verbose parsed url   query: null,
+70 verbose parsed url   pathname: 'underscore@https://github.com/mirkok/underscore/tarball/master',
+70 verbose parsed url   path: 'underscore@https://github.com/mirkok/underscore/tarball/master',
+70 verbose parsed url   href: 'underscore@https://github.com/mirkok/underscore/tarball/master' }
+71 verbose cache add name="webworker" spec="https://github.com/mirkok/node-webworker/tarball/master" args=["webworker","https://github.com/mirkok/node-webworker/tarball/master"]
+72 verbose parsed url { protocol: 'https:',
+72 verbose parsed url   slashes: true,
+72 verbose parsed url   auth: null,
+72 verbose parsed url   host: 'github.com',
+72 verbose parsed url   port: null,
+72 verbose parsed url   hostname: 'github.com',
+72 verbose parsed url   hash: null,
+72 verbose parsed url   search: null,
+72 verbose parsed url   query: null,
+72 verbose parsed url   pathname: '/mirkok/node-webworker/tarball/master',
+72 verbose parsed url   path: '/mirkok/node-webworker/tarball/master',
+72 verbose parsed url   href: 'https://github.com/mirkok/node-webworker/tarball/master' }
+73 silly lockFile 48cc7661-ok-node-webworker-tarball-master https://github.com/mirkok/node-webworker/tarball/master
+74 verbose lock https://github.com/mirkok/node-webworker/tarball/master /var/root/.npm/48cc7661-ok-node-webworker-tarball-master.lock
+75 verbose cache add name="underscore" spec="https://github.com/mirkok/underscore/tarball/master" args=["underscore","https://github.com/mirkok/underscore/tarball/master"]
+76 verbose parsed url { protocol: 'https:',
+76 verbose parsed url   slashes: true,
+76 verbose parsed url   auth: null,
+76 verbose parsed url   host: 'github.com',
+76 verbose parsed url   port: null,
+76 verbose parsed url   hostname: 'github.com',
+76 verbose parsed url   hash: null,
+76 verbose parsed url   search: null,
+76 verbose parsed url   query: null,
+76 verbose parsed url   pathname: '/mirkok/underscore/tarball/master',
+76 verbose parsed url   path: '/mirkok/underscore/tarball/master',
+76 verbose parsed url   href: 'https://github.com/mirkok/underscore/tarball/master' }
+77 silly lockFile 90bceead-mirkok-underscore-tarball-master https://github.com/mirkok/underscore/tarball/master
+78 verbose lock https://github.com/mirkok/underscore/tarball/master /var/root/.npm/90bceead-mirkok-underscore-tarball-master.lock
+79 verbose addRemoteTarball [ 'https://github.com/mirkok/node-webworker/tarball/master',
+79 verbose addRemoteTarball   null ]
+80 verbose addRemoteTarball [ 'https://github.com/mirkok/underscore/tarball/master', null ]
+81 info retry fetch attempt 1 at 23:35:04
+82 verbose fetch to= /var/root/tmp/npm-6420-12gLbiD2/1459049704464-0.7201324373017997/tmp.tgz
+83 info retry fetch attempt 1 at 23:35:04
+84 verbose fetch to= /var/root/tmp/npm-6420-12gLbiD2/1459049704464-0.6463012818712741/tmp.tgz
+85 http GET https://github.com/mirkok/underscore/tarball/master
+86 http GET https://github.com/mirkok/node-webworker/tarball/master
+87 http 404 https://github.com/mirkok/node-webworker/tarball/master
+88 http 404 https://github.com/mirkok/underscore/tarball/master
+89 error fetch failed https://github.com/mirkok/node-webworker/tarball/master
+90 silly lockFile 48cc7661-ok-node-webworker-tarball-master https://github.com/mirkok/node-webworker/tarball/master
+91 silly lockFile 48cc7661-ok-node-webworker-tarball-master https://github.com/mirkok/node-webworker/tarball/master
+92 verbose about to build /sites/api.spinbi.com/node_modules/spawn
+93 info /sites/api.spinbi.com/node_modules/spawn unbuild
+94 info preuninstall spawn@0.0.1
+95 info uninstall spawn@0.0.1
+96 verbose true,/sites/api.spinbi.com/node_modules,/sites/api.spinbi.com/node_modules unbuild spawn@0.0.1
+97 info postuninstall spawn@0.0.1
+98 error Error: 404 Not Found
+98 error     at WriteStream.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/fetch.js:57:12)
+98 error     at WriteStream.EventEmitter.emit (events.js:117:20)
+98 error     at fs.js:1598:14
+98 error     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:105:5
+98 error     at Object.oncomplete (fs.js:107:15)
+99 error If you need help, you may report this *entire* log,
+99 error including the npm and node versions, at:
+99 error     <http://github.com/npm/npm/issues>
+100 error System Darwin 15.3.0
+101 error command "node" "/usr/local/bin/npm" "install" "spawn"
+102 error cwd /sites/api.spinbi.com
+103 error node -v v0.10.28
+104 error npm -v 1.4.9
+105 verbose exit [ 1, true ]
