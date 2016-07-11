@@ -3,7 +3,7 @@ var router = express.Router();
 var http = require('http');
 var cheerio = require('cheerio');
 var async = require('async');
-
+var shortid = require('shortid');
 
 // include lib files
 var global = require('../lib/global');
@@ -351,6 +351,8 @@ router.post('/contact', function(req, res, next) {
 			var newContact = new Contact(req.body);
 			newContact.date = new Date();
 			newContact.user = user._id;
+			newContact.shortId = shortid.generate().toLowerCase();
+
 			// create search keywords
 			newContact._keywords.push(newContact.firstName);
 			newContact._keywords.push(newContact.lastName);
@@ -508,7 +510,7 @@ router.post('/content', function(req, res, next) {
 								LinkList.push(item.attribs['data-deferred-loaded']);
 							callback();
 						}, function(err){
-							//console.log(LinkList);
+							console.log(LinkList);
 							next();
 						});
 				    },

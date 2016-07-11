@@ -9,6 +9,7 @@ var ContactSchema = new mongoose.Schema({
 	lastName : {type : String, required: true},
 	legalFirstName : {type : String, required: true},
 	legalLastName : {type : String, required: true},
+	shortId : { type: String, required: true},
 	email : {type : String, required: true},
 	phone : {type : String, default: '' },
 	user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true},

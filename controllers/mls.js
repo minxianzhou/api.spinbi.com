@@ -33,6 +33,16 @@ exports.getSingleProperty= function(MlsNumber, callback){
 }
 
 
+exports.praseAutoPropertyLink= function(AutoPropertyLink, callback){
+
+
+
+}
+
+
+
+
+
 exports.generateOfferForms = function(req,res){
 
 	var accessToken = req.headers.authorization;
